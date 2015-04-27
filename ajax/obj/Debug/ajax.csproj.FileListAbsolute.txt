@@ -41,3 +41,46 @@ C:\Users\Ryan\AAA SSD\ajax\ajax\bin\Newtonsoft.Json.xml
 C:\Users\Ryan\AAA SSD\ajax\ajax\bin\System.Net.Http.Formatting.xml
 C:\Users\Ryan\AAA SSD\ajax\ajax\bin\System.Web.Http.xml
 C:\Users\Ryan\AAA SSD\ajax\ajax\bin\System.Web.Http.WebHost.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\ajax.dll.config
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\ajax.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\ajax.pdb
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\EntityFramework.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\EntityFramework.SqlServer.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.Owin.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.Owin.Security.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Newtonsoft.Json.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Owin.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Net.Http.Formatting.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Helpers.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Http.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Http.WebHost.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Mvc.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Razor.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.WebPages.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.WebPages.Razor.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\EntityFramework.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\EntityFramework.SqlServer.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.Owin.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.Owin.Security.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\Newtonsoft.Json.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Net.Http.Formatting.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Helpers.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Http.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Http.WebHost.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Mvc.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.Razor.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.WebPages.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.WebPages.Razor.xml
+C:\Users\Ryan\Coding\ajaxprofile\ajax\obj\Debug\ajax.csprojResolveAssemblyReference.cache
+C:\Users\Ryan\Coding\ajaxprofile\ajax\obj\Debug\ajax.dll
+C:\Users\Ryan\Coding\ajaxprofile\ajax\obj\Debug\ajax.pdb

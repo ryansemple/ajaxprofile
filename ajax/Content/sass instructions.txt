@@ -1,0 +1,9 @@
+1. If you haven't already, download ruby from here: http://rubyinstaller.org/downloads/
+2. Search 'Start command prompt with ruby' in your search bar
+3. run as administrator
+4. type 'gem install sass'
+5. double check it installed correctly by running 'sass -v'
+6. Point it to your local styles directory. For instance:
+'cd C:\Users\Ryan\Coding\ajaxprofile\ajax\Content'
+7. Finally, tell ruby to watch for changes in your styles.scss file, it will automatically update the styles.css
+Run this command: 'sass --watch styles.scss:styles.css --style expanded'

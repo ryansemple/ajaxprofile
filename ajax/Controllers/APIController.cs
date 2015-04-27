@@ -11,6 +11,7 @@ namespace ajax.Controllers
 {
     public class APIController : ApiController
     {
+        [AcceptVerbs("GET", "POST")]
         [WebMethod]
         public void setBiography(string biographyContent)
         {
