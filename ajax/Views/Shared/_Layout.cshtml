@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Ajax Profile</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/styles.css" rel="stylesheet" />
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout</a></li>
+                        <li><a href="@Url.Action("Profile", "Home")"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profile</a></li>
+                    }
+                    else
+                    {
+                      <li><a href="@Url.Action("Register", "Home")"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Register</a></li>  
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    @if (ViewBag.IncludeValidation == "t")
+    {
+        <script src="http://cdn.jsdelivr.net/jquery.validation/1.13.1/jquery.validate.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2/jquery.validate.unobtrusive.min.js"></script>
+    }
+    @if (ViewBag.PageId == "Profile")
+    {  
+        <script src="~/Scripts/profile.js"></script>
+    }
+</body>
+</html>
