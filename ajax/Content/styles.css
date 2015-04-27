@@ -1,9 +1,50 @@
-/* RESEST ------------------------------ */
+/* RESET ------------------------------- */
+/* END  RESEST ------------------------- */
+/* MIXINS ------------------------------ */
+/* END MIXINS -------------------------- */
+/* COLORS ------------------------------ */
+/* END COLORS -------------------------- */
+/* FONTS ------------------------------- */
 h2, h3 {
   font-family: 'Arvo', serif;
-  font-weight: 700;
+  font-weight: 400;
 }
 
-/* END  RESEST ------------------------- */
+/* END FONTS --------------------------- */
+/* LAYOUT ------------------------------ */
+main {
+  padding-top: 54px;
+}
+
+/* END LAYOUT -------------------------- */
+/* HEADER ------------------------------ */
+#header {
+  background-color: #5BBF21;
+  border-bottom: 4px solid #4ea31c;
+}
+
+#header a {
+  color: white;
+}
+
+/* HEADER ------------------------------ */
+/* MESSAGE ----------------------------- */
+#drawer_message {
+  background-color: #47D6C1;
+  position: fixed;
+  bottom: 50px;
+  color: #2a7e72;
+  font-weight: 700;
+  color: white;
+  text-shadow: 1px 1px 0 #969696;
+}
+
+#drawer_message.drawer_transition {
+  -webkit-transition: left 0.3s linear;
+  -moz-transition: left 0.3s linear;
+  transition: left 0.3s linear;
+}
+
+/* MESSAGE ----------------------------- */
 
 /*# sourceMappingURL=styles.css.map */

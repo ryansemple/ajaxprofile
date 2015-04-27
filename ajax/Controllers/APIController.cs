@@ -18,5 +18,11 @@ namespace ajax.Controllers
             ProfileRepository profileRepo = new ProfileRepository();
             profileRepo.setBiography(biographyContent);
         }
+
+        public string getBiography()
+        {
+            ProfileRepository profileRepo = new ProfileRepository();
+            return profileRepo.getBiography();
+        }
     }
 }

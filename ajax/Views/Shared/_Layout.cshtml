@@ -12,7 +12,7 @@
     <![endif]-->
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <header class="navbar navbar-inverse navbar-fixed-top" id="header">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,15 +36,17 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </header>
 
-    <div class="container body-content">
+    <main class="container body-content">
         @RenderBody()
-        <hr />
+        <div id="drawer_message">
+            <p></p>
+        </div>
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
-    </div>
+    </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     @if (ViewBag.IncludeValidation == "t")

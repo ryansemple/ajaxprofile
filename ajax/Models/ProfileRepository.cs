@@ -16,6 +16,13 @@ namespace ajax.Models
             aProfile.biography = biographyContent;
             db.SaveChanges();
         }
+        public string getBiography()
+        {
+            ryanajaxEntities db = new ryanajaxEntities();
+            profile aProfile = (from p in db.profiles
+                                select p).FirstOrDefault();
+            return aProfile.biography;
+        }
         public void CreateProfile()
         {
             profile profile = new profile();

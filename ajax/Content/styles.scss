@@ -1,8 +1,74 @@
-﻿/* RESEST ------------------------------ */
+﻿/* RESET ------------------------------- */
+
+/* END  RESEST ------------------------- */
+
+/* MIXINS ------------------------------ */
+
+@mixin transition($element, $duration, $timing) {
+    -webkit-transition: $element $duration $timing;
+    -moz-transition: $element $duration $timing;
+    transition: $element $duration $timing;
+}
+
+/* END MIXINS -------------------------- */
+
+/* COLORS ------------------------------ */
+
+@mixin transition($element, $duration, $timing) {
+    -webkit-transition: $element $duration $timing;
+    -moz-transition: $element $duration $timing;
+    transition: $element $duration $timing;
+}
+
+$greenMain: #5BBF21;
+$greenDark: #4ea31c; 
+
+/* END COLORS -------------------------- */
+
+/* FONTS ------------------------------- */
 
 h2, h3 {
     font-family: 'Arvo', serif;
-    font-weight: 700;
+    font-weight: 400;
 }
 
-/* END  RESEST ------------------------- */
+/* END FONTS --------------------------- */
+
+/* LAYOUT ------------------------------ */
+
+main {
+    padding-top: 54px;
+}
+/* END LAYOUT -------------------------- */
+
+/* HEADER ------------------------------ */
+
+#header {
+    background-color: $greenMain;
+    border-bottom: 4px solid $greenDark;
+}
+
+#header a {
+    color: white;
+}
+
+/* HEADER ------------------------------ */
+
+/* MESSAGE ----------------------------- */
+
+#drawer_message {
+    background-color: #47D6C1;
+    position: fixed;
+    bottom: 50px;
+    color: #2a7e72;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 0 rgb(150, 150, 150);
+}
+
+#drawer_message.drawer_transition {
+    @include transition(left, .3s, linear);
+}
+
+/* MESSAGE ----------------------------- */
+
