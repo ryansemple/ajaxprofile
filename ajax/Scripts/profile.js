@@ -19,12 +19,16 @@
         $.getJSON(setBiographyLink, null, function (data) { });
         drawerMessage.html("Updated biography");
         drawerWidth = drawerMessage.width();
-        drawerWidth = drawerWidth - drawerWidth - drawerWidth;
+        drawerWidth = drawerWidth - drawerWidth - drawerWidth - 40; //40 is padding
         //alert(drawerWidth);
+        //drawerMessage.addClass("drawer_transition");
         drawerMessage.css({ left: drawerWidth });
-        drawerMessage.addClass("drawer_transition");
+        //drawerMessage.addClass("show_drawer");
+        drawerMessage.css({left: 0, padding: "20px" });
         setTimeout(function () {
-            drawerMessage.css({left: 0, padding: "20px" });
-        }, 2000); //5 seconds
+            drawerMessage.css({ left: drawerWidth });
+        }, 5000);
+        var setBiographyLink = webApiURL + "?biographyContent=" + $bioInputValue;
+        $.getJSON(setBiographyLink, null, function (data) { });
     }
 });

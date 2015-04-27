@@ -21,7 +21,9 @@
 }
 
 $greenMain: #5BBF21;
-$greenDark: #4ea31c; 
+$greenDark: #4ea31c;
+$blueMain: #47D6C1;
+$blueDark: #3ab09e; 
 
 /* END COLORS -------------------------- */
 
@@ -57,18 +59,25 @@ main {
 /* MESSAGE ----------------------------- */
 
 #drawer_message {
-    background-color: #47D6C1;
+    background-color: $blueMain;
     position: fixed;
     bottom: 50px;
-    color: #2a7e72;
     font-weight: 700;
+    left: 0;
     color: white;
-    text-shadow: 1px 1px 0 rgb(150, 150, 150);
-}
-
-#drawer_message.drawer_transition {
+    text-shadow: 1px 1px 0 #7B7B7B;
+    border-bottom: 4px solid $blueDark;
     @include transition(left, .3s, linear);
 }
+
+#drawer_message.show_drawer {
+    left: 0;
+    padding: 20px;
+}
+
+/*#drawer_message.drawer_transition {
+    @include transition(left, .3s, linear);
+}*/
 
 /* MESSAGE ----------------------------- */
 
