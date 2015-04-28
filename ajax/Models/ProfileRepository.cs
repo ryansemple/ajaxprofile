@@ -23,9 +23,5 @@ namespace ajax.Models
                                 select p).FirstOrDefault();
             return aProfile.biography;
         }
-        public void CreateProfile()
-        {
-            profile profile = new profile();
-        }
     }
 }

@@ -13,11 +13,11 @@ namespace ajax
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-               name: "API",
-               url: "api/{controller}/{id}",
-               defaults: new { controller = "API", action = "Index", id = UrlParameter.Optional }
-           );
+           // routes.MapRoute(
+           //    name: "API",
+           //    url: "api/{controller}/{id}",
+           //    defaults: new { controller = "API", action = "Index", id = UrlParameter.Optional }
+           //);
 
             routes.MapRoute(
                 "OnlyAction",

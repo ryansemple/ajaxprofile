@@ -43,6 +43,10 @@ main {
   transition: left 0.3s linear;
 }
 
+#drawer_message p {
+  margin-bottom: 0;
+}
+
 #drawer_message.show_drawer {
   left: 0;
   padding: 20px;
