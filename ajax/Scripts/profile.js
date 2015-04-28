@@ -6,7 +6,7 @@
     var drawer = _id("drawer_message");
     var drawerMessage = drawer.find("p");
     var drawerWidth;
-    var webApiURL = "http://" + location.host + "/api/API/";
+    var apiURLStart = "http://" + location.host + "/api/";
     var timer;
     function startCount(method) {
         timer = setTimeout(method, 3000);
@@ -16,7 +16,8 @@
     $bioInput = _id("biography_input");
     function setBio() {
         var $bioInputValue = $bioInput.val();
-        var setBiographyLink = webApiURL + "?biographyContent=" + $bioInputValue;
+        var bioApiURL = apiURLStart + "Biographer/";
+        var setBiographyLink = bioApiURL + "?biographyContent=" + $bioInputValue;
         setBiographyLink = encodeURI(setBiographyLink.toString());
 
         $.getJSON(setBiographyLink, null)
@@ -29,7 +30,7 @@
             setTimeout(function () {
                 drawer.css({ left: drawerWidth });
             }, 5000);
-            var getBiographyLink = webApiURL;
+            var getBiographyLink = bioApiURL;
             $.getJSON(getBiographyLink, null, function (data) {
                 var biogaphyContent = _id("biography_content");
                 biogaphyContent.html(data);
