@@ -12,18 +12,21 @@ namespace ajax
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRole
+    public partial class Education
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AspNetRole()
+        public Education()
         {
-            this.AspNetUsers = new HashSet<AspNetUser>();
+            this.School_Department = new HashSet<School_Department>();
         }
     
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public int EducationId { get; set; }
+        public string School { get; set; }
+        public string Education_Level { get; set; }
+        public Nullable<int> UserId { get; set; }
     
+        public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual ICollection<School_Department> School_Department { get; set; }
     }
 }

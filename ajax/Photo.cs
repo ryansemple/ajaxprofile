@@ -12,9 +12,14 @@ namespace ajax
     using System;
     using System.Collections.Generic;
     
-    public partial class profile
+    public partial class Photo
     {
-        public int tableId { get; set; }
-        public string biography { get; set; }
+        public int PhotoId { get; set; }
+        public string PhotoName { get; set; }
+        public Nullable<bool> LikeToken { get; set; }
+        public Nullable<bool> Published { get; set; }
+        public Nullable<int> UserId { get; set; }
+    
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

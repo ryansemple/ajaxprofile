@@ -12,18 +12,22 @@ namespace ajax
     using System;
     using System.Collections.Generic;
     
-    public partial class AspNetRole
+    public partial class Work_History
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AspNetRole()
+        public Work_History()
         {
-            this.AspNetUsers = new HashSet<AspNetUser>();
+            this.Positions = new HashSet<Position>();
         }
     
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public string CompanyName { get; set; }
+        public int UserId { get; set; }
+        public System.TimeSpan StartDate { get; set; }
+        public Nullable<System.TimeSpan> EndDate { get; set; }
+        public Nullable<bool> CurrentJob { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual ICollection<Position> Positions { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

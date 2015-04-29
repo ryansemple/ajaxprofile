@@ -69,12 +69,97 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <EntityType Name="profile">
+  <EntityType Name="Education">
     <Key>
-      <PropertyRef Name="tableId" />
+      <PropertyRef Name="EducationId" />
     </Key>
-    <Property Name="tableId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="biography" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="EducationId" Type="Int32" Nullable="false" />
+    <Property Name="School" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Education_Level" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK__Education__UserI__725BF7F6" FromRole="Education" ToRole="UserProfile" />
+    <NavigationProperty Name="School_Department" Relationship="Self.FK__School_De__Educa__753864A1" FromRole="Education" ToRole="School_Department" />
+  </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="PhotoId" />
+    </Key>
+    <Property Name="PhotoId" Type="Int32" Nullable="false" />
+    <Property Name="PhotoName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LikeToken" Type="Boolean" />
+    <Property Name="Published" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK__Photo__UserId__68D28DBC" FromRole="Photo" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="JobTitle" />
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="JobTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Work_History" Relationship="Self.FK__Position__6F7F8B4B" FromRole="Position" ToRole="Work_History" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="PostId" />
+    </Key>
+    <Property Name="PostId" Type="Int32" Nullable="false" />
+    <Property Name="PostContent" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LikeToken" Type="Boolean" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK__Post__UserId__640DD89F" FromRole="Post" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="School_Department">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EducationId" Type="Int32" />
+    <NavigationProperty Name="Education" Relationship="Self.FK__School_De__Educa__753864A1" FromRole="School_Department" ToRole="Education" />
+    <NavigationProperty Name="School_Program" Relationship="Self.FK__School_Pr__Depar__7814D14C" FromRole="School_Department" ToRole="School_Program" />
+  </EntityType>
+  <EntityType Name="School_Program">
+    <Key>
+      <PropertyRef Name="ProgramId" />
+    </Key>
+    <Property Name="ProgramId" Type="Int32" Nullable="false" />
+    <Property Name="Program" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <NavigationProperty Name="School_Department" Relationship="Self.FK__School_Pr__Depar__7814D14C" FromRole="School_Program" ToRole="School_Department" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="DOB" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Biography" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="ProfilePhoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="AlbumName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="AlbumAllPublished" Type="Boolean" />
+    <NavigationProperty Name="Educations" Relationship="Self.FK__Education__UserI__725BF7F6" FromRole="UserProfile" ToRole="Education" />
+    <NavigationProperty Name="Photos" Relationship="Self.FK__Photo__UserId__68D28DBC" FromRole="UserProfile" ToRole="Photo" />
+    <NavigationProperty Name="Posts" Relationship="Self.FK__Post__UserId__640DD89F" FromRole="UserProfile" ToRole="Post" />
+    <NavigationProperty Name="Work_History" Relationship="Self.FK__Work_Hist__Curre__6CA31EA0" FromRole="UserProfile" ToRole="Work_History" />
+  </EntityType>
+  <EntityType Name="Work_History">
+    <Key>
+      <PropertyRef Name="CompanyName" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="EndDate" Type="Time" Precision="7" />
+    <Property Name="CurrentJob" Type="Boolean" />
+    <NavigationProperty Name="Positions" Relationship="Self.FK__Position__6F7F8B4B" FromRole="Work_History" ToRole="Position" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK__Work_Hist__Curre__6CA31EA0" FromRole="Work_History" ToRole="UserProfile" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -104,6 +189,92 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Education__UserI__725BF7F6">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="Education" Type="Self.Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Education">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__School_De__Educa__753864A1">
+    <End Role="Education" Type="Self.Education" Multiplicity="0..1" />
+    <End Role="School_Department" Type="Self.School_Department" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Education">
+        <PropertyRef Name="EducationId" />
+      </Principal>
+      <Dependent Role="School_Department">
+        <PropertyRef Name="EducationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Photo__UserId__68D28DBC">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Photo">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Position__6F7F8B4B">
+    <End Role="Work_History" Type="Self.Work_History" Multiplicity="1" />
+    <End Role="Position" Type="Self.Position" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Work_History">
+        <PropertyRef Name="CompanyName" />
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Position">
+        <PropertyRef Name="CompanyName" />
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Post__UserId__640DD89F">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__School_Pr__Depar__7814D14C">
+    <End Role="School_Department" Type="Self.School_Department" Multiplicity="0..1" />
+    <End Role="School_Program" Type="Self.School_Program" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School_Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="School_Program">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Work_Hist__Curre__6CA31EA0">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="Work_History" Type="Self.Work_History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Work_History">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="AspNetUserRoles">
     <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
@@ -115,7 +286,14 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <EntitySet Name="profiles" EntityType="Self.profile" />
+    <EntitySet Name="Educations" EntityType="Self.Education" />
+    <EntitySet Name="Photos" EntityType="Self.Photo" />
+    <EntitySet Name="Positions" EntityType="Self.Position" />
+    <EntitySet Name="Posts" EntityType="Self.Post" />
+    <EntitySet Name="School_Department" EntityType="Self.School_Department" />
+    <EntitySet Name="School_Program" EntityType="Self.School_Program" />
+    <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
+    <EntitySet Name="Work_History" EntityType="Self.Work_History" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -123,6 +301,34 @@
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Education__UserI__725BF7F6" Association="Self.FK__Education__UserI__725BF7F6">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Education" EntitySet="Educations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__School_De__Educa__753864A1" Association="Self.FK__School_De__Educa__753864A1">
+      <End Role="Education" EntitySet="Educations" />
+      <End Role="School_Department" EntitySet="School_Department" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Photo__UserId__68D28DBC" Association="Self.FK__Photo__UserId__68D28DBC">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Photo" EntitySet="Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Position__6F7F8B4B" Association="Self.FK__Position__6F7F8B4B">
+      <End Role="Work_History" EntitySet="Work_History" />
+      <End Role="Position" EntitySet="Positions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Post__UserId__640DD89F" Association="Self.FK__Post__UserId__640DD89F">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__School_Pr__Depar__7814D14C" Association="Self.FK__School_Pr__Depar__7814D14C">
+      <End Role="School_Department" EntitySet="School_Department" />
+      <End Role="School_Program" EntitySet="School_Program" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Work_Hist__Curre__6CA31EA0" Association="Self.FK__Work_Hist__Curre__6CA31EA0">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Work_History" EntitySet="Work_History" />
     </AssociationSet>
     <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />

@@ -33,16 +33,17 @@ DROP TABLE Post;
 
 GO
 
-IF OBJECT_ID('Profile') IS NOT NULL
-DROP TABLE Profile;
+IF OBJECT_ID('UserProfile') IS NOT NULL
+DROP TABLE UserProfile;
 
 GO
 
-CREATE TABLE Profile(
+CREATE TABLE UserProfile(
 	UserId INT PRIMARY KEY,
 	DOB TIME NOT NULL,
 	LastName VARCHAR(30) NOT NULL,
 	FirstName VARCHAR(30) NOT NULL,
+	Biography VARCHAR(1000),
 	ProfilePhoto VARCHAR(255),
 	AlbumName VARCHAR(30),
 	AlbumAllPublished BIT DEFAULT 0
@@ -53,7 +54,7 @@ CREATE TABLE Post(
 	PostContent VARCHAR(4000) NOT NULL,
 	LikeToken BIT DEFAULT 0,
 	UserId INT,
-	FOREIGN KEY (UserId) REFERENCES ryanajaxuser.Profile (UserId) 
+	FOREIGN KEY (UserId) REFERENCES ryanajaxuser.UserProfile (UserId) 
 );
 
 CREATE TABLE Photo(
@@ -62,7 +63,7 @@ CREATE TABLE Photo(
 	LikeToken BIT DEFAULT 0,
 	Published BIT DEFAULT 0,
 	UserId INT,
-	FOREIGN KEY (UserId) REFERENCES ryanajaxuser.Profile (UserId)
+	FOREIGN KEY (UserId) REFERENCES ryanajaxuser.UserProfile (UserId)
 );
 
 CREATE TABLE Work_History(
@@ -71,7 +72,7 @@ CREATE TABLE Work_History(
 	StartDate TIME NOT NULL,
 	EndDate TIME,
 	CurrentJob BIT DEFAULT 0
-	FOREIGN KEY (UserId) REFERENCES ryanajaxuser.Profile (UserId),
+	FOREIGN KEY (UserId) REFERENCES ryanajaxuser.UserProfile (UserId),
 	PRIMARY KEY (CompanyName, UserId)
 );
 
@@ -88,7 +89,7 @@ CREATE TABLE Education(
 	School VARCHAR(100) NOT NULL,
 	Education_Level VARCHAR(20) NOT NULL,
 	UserId INT,
-	FOREIGN KEY (UserId) REFERENCES ryanajaxuser.Profile (UserId),
+	FOREIGN KEY (UserId) REFERENCES ryanajaxuser.UserProfile (UserId),
 );
 
 CREATE TABLE School_Department(

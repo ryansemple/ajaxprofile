@@ -11,17 +11,17 @@ namespace ajax.Models
         public void setBiography(string biographyContent)
         {
             ryanajaxEntities db = new ryanajaxEntities();
-            profile aProfile = (from p in db.profiles
+            UserProfile aProfile = (from p in db.UserProfiles
                                select p).FirstOrDefault();
-            aProfile.biography = biographyContent;
+            aProfile.Biography = biographyContent;
             db.SaveChanges();
         }
         public string getBiography()
         {
             ryanajaxEntities db = new ryanajaxEntities();
-            profile aProfile = (from p in db.profiles
+            UserProfile aProfile = (from p in db.UserProfiles
                                 select p).FirstOrDefault();
-            return aProfile.biography;
+            return aProfile.Biography;
         }
     }
 }
