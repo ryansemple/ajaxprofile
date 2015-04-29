@@ -247,8 +247,16 @@
     <Compile Include="UserProfile.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EducationModel.cs" />
+    <Compile Include="ViewModels\PhotoModel.cs" />
+    <Compile Include="ViewModels\PositionModel.cs" />
+    <Compile Include="ViewModels\Post.cs" />
+    <Compile Include="ViewModels\School_Department.cs" />
+    <Compile Include="ViewModels\School_Program.cs" />
     <Compile Include="ViewModels\UserLogin.cs" />
+    <Compile Include="ViewModels\UserProfile.cs" />
     <Compile Include="ViewModels\UserRegister.cs" />
+    <Compile Include="ViewModels\Work_History.cs" />
     <Compile Include="Work_History.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
