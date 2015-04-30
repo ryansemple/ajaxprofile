@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Services;
+using ajax.ViewModels;
+using System.Web.Http.Description;
 
 namespace ajax.Controllers
 {
@@ -35,6 +37,12 @@ namespace ajax.Controllers
             ProfileRepository profileRepo = new ProfileRepository();
             return profileRepo.getBiography();
             //return "hey";
+        }
+        [ResponseType(typeof(EducationRepository))]
+        public void PostEducation(EducationModel educationModel)
+        {
+            EducationRepository EducationRepo = new EducationRepository();
+            EducationRepo.AddEducation(educationModel);
         }
     }
 }

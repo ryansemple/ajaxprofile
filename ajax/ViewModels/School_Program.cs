@@ -9,6 +9,5 @@ namespace ajax.ViewModels
     {
         public int ProgramId { get; set; }
         public string Program { get; set; }
-        public int DepartmentId { get; set; }
     }
 }
