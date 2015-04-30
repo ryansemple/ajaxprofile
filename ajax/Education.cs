@@ -14,19 +14,12 @@ namespace ajax
     
     public partial class Education
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Education()
-        {
-            this.School_Department = new HashSet<School_Department>();
-        }
-    
-        public int EducationId { get; set; }
         public string School { get; set; }
         public string Education_Level { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public string Department { get; set; }
+        public string Program { get; set; }
+        public int UserId { get; set; }
     
         public virtual UserProfile UserProfile { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<School_Department> School_Department { get; set; }
     }
 }

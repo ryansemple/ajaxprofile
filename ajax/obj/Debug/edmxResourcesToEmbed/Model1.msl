@@ -67,16 +67,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Educations">
-      <EntityTypeMapping TypeName="ryanajaxModel.Education">
-        <MappingFragment StoreEntitySet="Education">
-          <ScalarProperty Name="EducationId" ColumnName="EducationId" />
-          <ScalarProperty Name="School" ColumnName="School" />
-          <ScalarProperty Name="Education_Level" ColumnName="Education_Level" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Photos">
       <EntityTypeMapping TypeName="ryanajaxModel.Photo">
         <MappingFragment StoreEntitySet="Photo">
@@ -107,38 +97,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="School_Department">
-      <EntityTypeMapping TypeName="ryanajaxModel.School_Department">
-        <MappingFragment StoreEntitySet="School_Department">
-          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
-          <ScalarProperty Name="EducationId" ColumnName="EducationId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="School_Program">
-      <EntityTypeMapping TypeName="ryanajaxModel.School_Program">
-        <MappingFragment StoreEntitySet="School_Program">
-          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
-          <ScalarProperty Name="Program" ColumnName="Program" />
-          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserProfiles">
-      <EntityTypeMapping TypeName="ryanajaxModel.UserProfile">
-        <MappingFragment StoreEntitySet="UserProfile">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="DOB" ColumnName="DOB" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="Biography" ColumnName="Biography" />
-          <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
-          <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
-          <ScalarProperty Name="AlbumAllPublished" ColumnName="AlbumAllPublished" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Work_History">
       <EntityTypeMapping TypeName="ryanajaxModel.Work_History">
         <MappingFragment StoreEntitySet="Work_History">
@@ -158,5 +116,30 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="UserProfiles">
+      <EntityTypeMapping TypeName="ryanajaxModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="AlbumAllPublished" ColumnName="AlbumAllPublished" />
+          <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
+          <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
+          <ScalarProperty Name="Biography" ColumnName="Biography" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Educations">
+      <EntityTypeMapping TypeName="ryanajaxModel.Education">
+        <MappingFragment StoreEntitySet="Education">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Program" ColumnName="Program" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Education_Level" ColumnName="Education_Level" />
+          <ScalarProperty Name="School" ColumnName="School" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

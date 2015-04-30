@@ -11,24 +11,20 @@
         <EntityTypeShape EntityType="ryanajaxModel.AspNetUserLogin" Width="1.5" PointX="12.25" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ryanajaxModel.AspNetUser" Width="1.5" PointX="10" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ryanajaxModel.sysdiagram" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ryanajaxModel.Education" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ryanajaxModel.Photo" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ryanajaxModel.Position" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ryanajaxModel.Post" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ryanajaxModel.School_Department" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ryanajaxModel.School_Program" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ryanajaxModel.UserProfile" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="ryanajaxModel.Work_History" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
         <AssociationConnector Association="ryanajaxModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="ryanajaxModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="ryanajaxModel.FK__Education__UserI__725BF7F6" ManuallyRouted="false" />
-        <AssociationConnector Association="ryanajaxModel.FK__School_De__Educa__753864A1" ManuallyRouted="false" />
-        <AssociationConnector Association="ryanajaxModel.FK__Photo__UserId__68D28DBC" ManuallyRouted="false" />
         <AssociationConnector Association="ryanajaxModel.FK__Position__6F7F8B4B" ManuallyRouted="false" />
-        <AssociationConnector Association="ryanajaxModel.FK__Post__UserId__640DD89F" ManuallyRouted="false" />
-        <AssociationConnector Association="ryanajaxModel.FK__School_Pr__Depar__7814D14C" ManuallyRouted="false" />
-        <AssociationConnector Association="ryanajaxModel.FK__Work_Hist__Curre__6CA31EA0" ManuallyRouted="false" />
         <AssociationConnector Association="ryanajaxModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ryanajaxModel.UserProfile" Width="1.5" PointX="0.75" PointY="5.25" />
+        <AssociationConnector Association="ryanajaxModel.FK__Photo__UserId__1E3A7A34" />
+        <AssociationConnector Association="ryanajaxModel.FK__Post__UserId__1975C517" />
+        <AssociationConnector Association="ryanajaxModel.FK__Work_Hist__Curre__220B0B18" />
+        <EntityTypeShape EntityType="ryanajaxModel.Education" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="ryanajaxModel.FK__Education__UserI__4277DAAA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,16 +1,11 @@
 ﻿function create() {
     jQuery.support.cors = true;
     var EducationModel = {
+        UserId: 1,
         School: "BCIT",
         EducationLevel: "Certificate",
-        SchoolDepartment: {
-            DepartmentId: 123,
-            Department: "HTP",
-            SchoolProgram: {
-                ProgramId: 334,
-                Program: "SSDP"
-            }
-        }
+        Department: "HTP",
+        Program: "SSDP"
     };
 
     var apiURLStart = "http://" + location.host + "/api/Biographer/";

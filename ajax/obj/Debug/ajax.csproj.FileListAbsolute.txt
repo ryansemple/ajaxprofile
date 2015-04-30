@@ -84,7 +84,6 @@ C:\Users\Ryan\Coding\ajaxprofile\ajax\bin\System.Web.WebPages.Razor.xml
 C:\Users\Ryan\Coding\ajaxprofile\ajax\obj\Debug\ajax.csprojResolveAssemblyReference.cache
 C:\Users\Ryan\Coding\ajaxprofile\ajax\obj\Debug\ajax.dll
 C:\Users\Ryan\Coding\ajaxprofile\ajax\obj\Debug\ajax.pdb
-F:\ajaxprofile\ajax\obj\Debug\ajax.csprojResolveAssemblyReference.cache
 F:\ajaxprofile\ajax\obj\Debug\ajax.dll
 F:\ajaxprofile\ajax\obj\Debug\ajax.pdb
 F:\ajaxprofile\ajax\bin\ajax.dll.config

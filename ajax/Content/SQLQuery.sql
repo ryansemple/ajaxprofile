@@ -39,8 +39,8 @@ DROP TABLE UserProfile;
 GO
 
 CREATE TABLE UserProfile(
-	UserId INT PRIMARY KEY,
-	DOB TIME NOT NULL,
+	UserId INT IDENTITY(1,1) PRIMARY KEY,
+	DOB DATE NOT NULL,
 	LastName VARCHAR(30) NOT NULL,
 	FirstName VARCHAR(30) NOT NULL,
 	Biography VARCHAR(1000),
@@ -50,7 +50,7 @@ CREATE TABLE UserProfile(
 );
 
 CREATE TABLE Post(
-	PostId INT PRIMARY KEY,
+	PostId INT IDENTITY(1,1) PRIMARY KEY,
 	PostContent VARCHAR(4000) NOT NULL,
 	LikeToken BIT DEFAULT 0,
 	UserId INT,
@@ -58,7 +58,7 @@ CREATE TABLE Post(
 );
 
 CREATE TABLE Photo(
-	PhotoId INT PRIMARY KEY,
+	PhotoId INT IDENTITY(1,1) PRIMARY KEY,
 	PhotoName VARCHAR(50),
 	LikeToken BIT DEFAULT 0,
 	Published BIT DEFAULT 0,
@@ -85,7 +85,7 @@ CREATE TABLE Position(
 );
 
 CREATE TABLE Education(
-	EducationId INT PRIMARY KEY,
+	EducationId INT IDENTITY(1,1) PRIMARY KEY,
 	School VARCHAR(100) NOT NULL,
 	Education_Level VARCHAR(20) NOT NULL,
 	UserId INT,
@@ -93,14 +93,14 @@ CREATE TABLE Education(
 );
 
 CREATE TABLE School_Department(
-	DepartmentId INT PRIMARY KEY,
+	DepartmentId INT IDENTITY(1,1) PRIMARY KEY,
 	Department VARCHAR(100) NOT NULL,
 	EducationId INT,
 	FOREIGN KEY (EducationId) REFERENCES Education (EducationId)
 );
 
 CREATE TABLE School_Program(
-	ProgramId INT PRIMARY KEY,
+	ProgramId INT IDENTITY(1,1) PRIMARY KEY,
 	Program VARCHAR(100),
 	DepartmentId INT,
 	FOREIGN KEY (DepartmentId) REFERENCES School_Department (DepartmentId)

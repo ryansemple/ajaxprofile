@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ryanajaxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ryanajaxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -78,18 +78,23 @@
         </EntityType>
         <EntityType Name="Education">
           <Key>
-            <PropertyRef Name="EducationId" />
+            <PropertyRef Name="School" />
+            <PropertyRef Name="Education_Level" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="Program" />
+            <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="EducationId" Type="int" Nullable="false" />
           <Property Name="School" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Education_Level" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="UserId" Type="int" />
+          <Property Name="Department" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Program" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="PhotoId" />
           </Key>
-          <Property Name="PhotoId" Type="int" Nullable="false" />
+          <Property Name="PhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PhotoName" Type="varchar" MaxLength="50" />
           <Property Name="LikeToken" Type="bit" />
           <Property Name="Published" Type="bit" />
@@ -109,33 +114,17 @@
           <Key>
             <PropertyRef Name="PostId" />
           </Key>
-          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PostContent" Type="varchar" MaxLength="4000" Nullable="false" />
           <Property Name="LikeToken" Type="bit" />
           <Property Name="UserId" Type="int" />
-        </EntityType>
-        <EntityType Name="School_Department">
-          <Key>
-            <PropertyRef Name="DepartmentId" />
-          </Key>
-          <Property Name="DepartmentId" Type="int" Nullable="false" />
-          <Property Name="Department" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="EducationId" Type="int" />
-        </EntityType>
-        <EntityType Name="School_Program">
-          <Key>
-            <PropertyRef Name="ProgramId" />
-          </Key>
-          <Property Name="ProgramId" Type="int" Nullable="false" />
-          <Property Name="Program" Type="varchar" MaxLength="100" />
-          <Property Name="DepartmentId" Type="int" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="DOB" Type="time" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DOB" Type="date" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Biography" Type="varchar" MaxLength="1000" />
@@ -154,8 +143,8 @@
           <Property Name="EndDate" Type="time" Precision="7" />
           <Property Name="CurrentJob" Type="bit" />
         </EntityType>
-        <Association Name="FK__Education__UserI__725BF7F6">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+        <Association Name="FK__Education__UserI__4277DAAA">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
           <End Role="Education" Type="Self.Education" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
@@ -166,7 +155,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Photo__UserId__68D28DBC">
+        <Association Name="FK__Photo__UserId__38EE7070">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -178,7 +167,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Position__6F7F8B4B">
+        <Association Name="FK__Position__3F9B6DFF">
           <End Role="Work_History" Type="Self.Work_History" Multiplicity="1" />
           <End Role="Position" Type="Self.Position" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,7 +181,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Post__UserId__640DD89F">
+        <Association Name="FK__Post__UserId__3429BB53">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="Post" Type="Self.Post" Multiplicity="*" />
           <ReferentialConstraint>
@@ -204,31 +193,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__School_De__Educa__753864A1">
-          <End Role="Education" Type="Self.Education" Multiplicity="0..1" />
-          <End Role="School_Department" Type="Self.School_Department" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Education">
-              <PropertyRef Name="EducationId" />
-            </Principal>
-            <Dependent Role="School_Department">
-              <PropertyRef Name="EducationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__School_Pr__Depar__7814D14C">
-          <End Role="School_Department" Type="Self.School_Department" Multiplicity="0..1" />
-          <End Role="School_Program" Type="Self.School_Program" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="School_Department">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="School_Program">
-              <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Work_Hist__Curre__6CA31EA0">
+        <Association Name="FK__Work_Hist__Curre__3CBF0154">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
           <End Role="Work_History" Type="Self.Work_History" Multiplicity="*" />
           <ReferentialConstraint>
@@ -308,35 +273,25 @@
           <EntitySet Name="Photo" EntityType="Self.Photo" Schema="ryanajaxuser" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="ryanajaxuser" store:Type="Tables" />
           <EntitySet Name="Post" EntityType="Self.Post" Schema="ryanajaxuser" store:Type="Tables" />
-          <EntitySet Name="School_Department" EntityType="Self.School_Department" Schema="ryanajaxuser" store:Type="Tables" />
-          <EntitySet Name="School_Program" EntityType="Self.School_Program" Schema="ryanajaxuser" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="ryanajaxuser" store:Type="Tables" />
           <EntitySet Name="Work_History" EntityType="Self.Work_History" Schema="ryanajaxuser" store:Type="Tables" />
-          <AssociationSet Name="FK__Education__UserI__725BF7F6" Association="Self.FK__Education__UserI__725BF7F6">
+          <AssociationSet Name="FK__Education__UserI__4277DAAA" Association="Self.FK__Education__UserI__4277DAAA">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Education" EntitySet="Education" />
           </AssociationSet>
-          <AssociationSet Name="FK__Photo__UserId__68D28DBC" Association="Self.FK__Photo__UserId__68D28DBC">
+          <AssociationSet Name="FK__Photo__UserId__38EE7070" Association="Self.FK__Photo__UserId__38EE7070">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Photo" EntitySet="Photo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Position__6F7F8B4B" Association="Self.FK__Position__6F7F8B4B">
+          <AssociationSet Name="FK__Position__3F9B6DFF" Association="Self.FK__Position__3F9B6DFF">
             <End Role="Work_History" EntitySet="Work_History" />
             <End Role="Position" EntitySet="Position" />
           </AssociationSet>
-          <AssociationSet Name="FK__Post__UserId__640DD89F" Association="Self.FK__Post__UserId__640DD89F">
+          <AssociationSet Name="FK__Post__UserId__3429BB53" Association="Self.FK__Post__UserId__3429BB53">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Post" EntitySet="Post" />
           </AssociationSet>
-          <AssociationSet Name="FK__School_De__Educa__753864A1" Association="Self.FK__School_De__Educa__753864A1">
-            <End Role="Education" EntitySet="Education" />
-            <End Role="School_Department" EntitySet="School_Department" />
-          </AssociationSet>
-          <AssociationSet Name="FK__School_Pr__Depar__7814D14C" Association="Self.FK__School_Pr__Depar__7814D14C">
-            <End Role="School_Department" EntitySet="School_Department" />
-            <End Role="School_Program" EntitySet="School_Program" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Work_Hist__Curre__6CA31EA0" Association="Self.FK__Work_Hist__Curre__6CA31EA0">
+          <AssociationSet Name="FK__Work_Hist__Curre__3CBF0154" Association="Self.FK__Work_Hist__Curre__3CBF0154">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Work_History" EntitySet="Work_History" />
           </AssociationSet>
@@ -357,8 +312,7 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ryanajaxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -431,17 +385,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Education">
-          <Key>
-            <PropertyRef Name="EducationId" />
-          </Key>
-          <Property Name="EducationId" Type="Int32" Nullable="false" />
-          <Property Name="School" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Education_Level" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Education__UserI__725BF7F6" FromRole="Education" ToRole="UserProfile" />
-          <NavigationProperty Name="School_Department" Relationship="Self.FK__School_De__Educa__753864A1" FromRole="Education" ToRole="School_Department" />
-        </EntityType>
         <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="PhotoId" />
@@ -451,7 +394,7 @@
           <Property Name="LikeToken" Type="Boolean" />
           <Property Name="Published" Type="Boolean" />
           <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Photo__UserId__68D28DBC" FromRole="Photo" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Photo__UserId__1E3A7A34" FromRole="Photo" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -472,43 +415,7 @@
           <Property Name="PostContent" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LikeToken" Type="Boolean" />
           <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Post__UserId__640DD89F" FromRole="Post" ToRole="UserProfile" />
-        </EntityType>
-        <EntityType Name="School_Department">
-          <Key>
-            <PropertyRef Name="DepartmentId" />
-          </Key>
-          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
-          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EducationId" Type="Int32" />
-          <NavigationProperty Name="Education" Relationship="Self.FK__School_De__Educa__753864A1" FromRole="School_Department" ToRole="Education" />
-          <NavigationProperty Name="School_Program" Relationship="Self.FK__School_Pr__Depar__7814D14C" FromRole="School_Department" ToRole="School_Program" />
-        </EntityType>
-        <EntityType Name="School_Program">
-          <Key>
-            <PropertyRef Name="ProgramId" />
-          </Key>
-          <Property Name="ProgramId" Type="Int32" Nullable="false" />
-          <Property Name="Program" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DepartmentId" Type="Int32" />
-          <NavigationProperty Name="School_Department" Relationship="Self.FK__School_Pr__Depar__7814D14C" FromRole="School_Program" ToRole="School_Department" />
-        </EntityType>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="DOB" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Biography" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="ProfilePhoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="AlbumName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="AlbumAllPublished" Type="Boolean" />
-          <NavigationProperty Name="Educations" Relationship="Self.FK__Education__UserI__725BF7F6" FromRole="UserProfile" ToRole="Education" />
-          <NavigationProperty Name="Photos" Relationship="Self.FK__Photo__UserId__68D28DBC" FromRole="UserProfile" ToRole="Photo" />
-          <NavigationProperty Name="Posts" Relationship="Self.FK__Post__UserId__640DD89F" FromRole="UserProfile" ToRole="Post" />
-          <NavigationProperty Name="Work_History" Relationship="Self.FK__Work_Hist__Curre__6CA31EA0" FromRole="UserProfile" ToRole="Work_History" />
+          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Post__UserId__1975C517" FromRole="Post" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Work_History">
           <Key>
@@ -521,7 +428,7 @@
           <Property Name="EndDate" Type="Time" Precision="7" />
           <Property Name="CurrentJob" Type="Boolean" />
           <NavigationProperty Name="Positions" Relationship="Self.FK__Position__6F7F8B4B" FromRole="Work_History" ToRole="Position" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK__Work_Hist__Curre__6CA31EA0" FromRole="Work_History" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Work_Hist__Curre__220B0B18" FromRole="Work_History" ToRole="UserProfile" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -551,42 +458,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Education__UserI__725BF7F6">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="Education" Type="Self.Education" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Education">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__School_De__Educa__753864A1">
-          <End Role="Education" Type="Self.Education" Multiplicity="0..1" />
-          <End Role="School_Department" Type="Self.School_Department" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Education">
-              <PropertyRef Name="EducationId" />
-            </Principal>
-            <Dependent Role="School_Department">
-              <PropertyRef Name="EducationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Photo__UserId__68D28DBC">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Photo">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Position__6F7F8B4B">
           <End Role="Work_History" Type="Self.Work_History" Multiplicity="1" />
           <End Role="Position" Type="Self.Position" Multiplicity="*" />
@@ -597,42 +468,6 @@
             </Principal>
             <Dependent Role="Position">
               <PropertyRef Name="CompanyName" />
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Post__UserId__640DD89F">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="Post" Type="Self.Post" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Post">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__School_Pr__Depar__7814D14C">
-          <End Role="School_Department" Type="Self.School_Department" Multiplicity="0..1" />
-          <End Role="School_Program" Type="Self.School_Program" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="School_Department">
-              <PropertyRef Name="DepartmentId" />
-            </Principal>
-            <Dependent Role="School_Program">
-              <PropertyRef Name="DepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Work_Hist__Curre__6CA31EA0">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="Work_History" Type="Self.Work_History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Work_History">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -648,13 +483,9 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Educations" EntityType="Self.Education" />
           <EntitySet Name="Photos" EntityType="Self.Photo" />
           <EntitySet Name="Positions" EntityType="Self.Position" />
           <EntitySet Name="Posts" EntityType="Self.Post" />
-          <EntitySet Name="School_Department" EntityType="Self.School_Department" />
-          <EntitySet Name="School_Program" EntityType="Self.School_Program" />
-          <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
           <EntitySet Name="Work_History" EntityType="Self.Work_History" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -664,39 +495,113 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__Education__UserI__725BF7F6" Association="Self.FK__Education__UserI__725BF7F6">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="Education" EntitySet="Educations" />
-          </AssociationSet>
-          <AssociationSet Name="FK__School_De__Educa__753864A1" Association="Self.FK__School_De__Educa__753864A1">
-            <End Role="Education" EntitySet="Educations" />
-            <End Role="School_Department" EntitySet="School_Department" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Photo__UserId__68D28DBC" Association="Self.FK__Photo__UserId__68D28DBC">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="Photo" EntitySet="Photos" />
-          </AssociationSet>
           <AssociationSet Name="FK__Position__6F7F8B4B" Association="Self.FK__Position__6F7F8B4B">
             <End Role="Work_History" EntitySet="Work_History" />
             <End Role="Position" EntitySet="Positions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Post__UserId__640DD89F" Association="Self.FK__Post__UserId__640DD89F">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="Post" EntitySet="Posts" />
-          </AssociationSet>
-          <AssociationSet Name="FK__School_Pr__Depar__7814D14C" Association="Self.FK__School_Pr__Depar__7814D14C">
-            <End Role="School_Department" EntitySet="School_Department" />
-            <End Role="School_Program" EntitySet="School_Program" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Work_Hist__Curre__6CA31EA0" Association="Self.FK__Work_Hist__Curre__6CA31EA0">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="Work_History" EntitySet="Work_History" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="UserProfiles" EntityType="ryanajaxModel.UserProfile" />
+          <AssociationSet Name="FK__Photo__UserId__1E3A7A34" Association="ryanajaxModel.FK__Photo__UserId__1E3A7A34">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Photo" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__UserId__1975C517" Association="ryanajaxModel.FK__Post__UserId__1975C517">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Work_Hist__Curre__220B0B18" Association="ryanajaxModel.FK__Work_Hist__Curre__220B0B18">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Work_History" EntitySet="Work_History" />
+          </AssociationSet>
+          <EntitySet Name="Educations" EntityType="ryanajaxModel.Education" />
+          <AssociationSet Name="FK__Education__UserI__4277DAAA" Association="ryanajaxModel.FK__Education__UserI__4277DAAA">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Education" EntitySet="Educations" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Biography" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePhoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AlbumName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AlbumAllPublished" Type="Boolean" />
+          <NavigationProperty Name="Photos" Relationship="ryanajaxModel.FK__Photo__UserId__1E3A7A34" FromRole="UserProfile" ToRole="Photo" />
+          <NavigationProperty Name="Posts" Relationship="ryanajaxModel.FK__Post__UserId__1975C517" FromRole="UserProfile" ToRole="Post" />
+          <NavigationProperty Name="Work_History" Relationship="ryanajaxModel.FK__Work_Hist__Curre__220B0B18" FromRole="UserProfile" ToRole="Work_History" />
+          <NavigationProperty Name="Educations" Relationship="ryanajaxModel.FK__Education__UserI__4277DAAA" FromRole="UserProfile" ToRole="Education" />
+        </EntityType>
+        <Association Name="FK__Photo__UserId__1E3A7A34">
+          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ryanajaxModel.Photo" Role="Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__UserId__1975C517">
+          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ryanajaxModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Work_Hist__Curre__220B0B18">
+          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="ryanajaxModel.Work_History" Role="Work_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Work_History">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="School" />
+            <PropertyRef Name="Education_Level" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="Program" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="School" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Education_Level" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Department" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Program" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Education__UserI__4277DAAA" FromRole="Education" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK__Education__UserI__4277DAAA">
+          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="ryanajaxModel.Education" Role="Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -769,16 +674,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Educations">
-            <EntityTypeMapping TypeName="ryanajaxModel.Education">
-              <MappingFragment StoreEntitySet="Education">
-                <ScalarProperty Name="EducationId" ColumnName="EducationId" />
-                <ScalarProperty Name="School" ColumnName="School" />
-                <ScalarProperty Name="Education_Level" ColumnName="Education_Level" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Photos">
             <EntityTypeMapping TypeName="ryanajaxModel.Photo">
               <MappingFragment StoreEntitySet="Photo">
@@ -809,38 +704,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="School_Department">
-            <EntityTypeMapping TypeName="ryanajaxModel.School_Department">
-              <MappingFragment StoreEntitySet="School_Department">
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="EducationId" ColumnName="EducationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="School_Program">
-            <EntityTypeMapping TypeName="ryanajaxModel.School_Program">
-              <MappingFragment StoreEntitySet="School_Program">
-                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
-                <ScalarProperty Name="Program" ColumnName="Program" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="ryanajaxModel.UserProfile">
-              <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Biography" ColumnName="Biography" />
-                <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
-                <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
-                <ScalarProperty Name="AlbumAllPublished" ColumnName="AlbumAllPublished" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Work_History">
             <EntityTypeMapping TypeName="ryanajaxModel.Work_History">
               <MappingFragment StoreEntitySet="Work_History">
@@ -860,6 +723,31 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="ryanajaxModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="AlbumAllPublished" ColumnName="AlbumAllPublished" />
+                <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
+                <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
+                <ScalarProperty Name="Biography" ColumnName="Biography" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educations">
+            <EntityTypeMapping TypeName="ryanajaxModel.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Program" ColumnName="Program" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Education_Level" ColumnName="Education_Level" />
+                <ScalarProperty Name="School" ColumnName="School" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

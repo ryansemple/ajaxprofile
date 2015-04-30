@@ -73,18 +73,23 @@
   </EntityType>
   <EntityType Name="Education">
     <Key>
-      <PropertyRef Name="EducationId" />
+      <PropertyRef Name="School" />
+      <PropertyRef Name="Education_Level" />
+      <PropertyRef Name="Department" />
+      <PropertyRef Name="Program" />
+      <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="EducationId" Type="int" Nullable="false" />
     <Property Name="School" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Education_Level" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="UserId" Type="int" />
+    <Property Name="Department" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Program" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Photo">
     <Key>
       <PropertyRef Name="PhotoId" />
     </Key>
-    <Property Name="PhotoId" Type="int" Nullable="false" />
+    <Property Name="PhotoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PhotoName" Type="varchar" MaxLength="50" />
     <Property Name="LikeToken" Type="bit" />
     <Property Name="Published" Type="bit" />
@@ -104,33 +109,17 @@
     <Key>
       <PropertyRef Name="PostId" />
     </Key>
-    <Property Name="PostId" Type="int" Nullable="false" />
+    <Property Name="PostId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="PostContent" Type="varchar" MaxLength="4000" Nullable="false" />
     <Property Name="LikeToken" Type="bit" />
     <Property Name="UserId" Type="int" />
-  </EntityType>
-  <EntityType Name="School_Department">
-    <Key>
-      <PropertyRef Name="DepartmentId" />
-    </Key>
-    <Property Name="DepartmentId" Type="int" Nullable="false" />
-    <Property Name="Department" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="EducationId" Type="int" />
-  </EntityType>
-  <EntityType Name="School_Program">
-    <Key>
-      <PropertyRef Name="ProgramId" />
-    </Key>
-    <Property Name="ProgramId" Type="int" Nullable="false" />
-    <Property Name="Program" Type="varchar" MaxLength="100" />
-    <Property Name="DepartmentId" Type="int" />
   </EntityType>
   <EntityType Name="UserProfile">
     <Key>
       <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="DOB" Type="time" Precision="7" Nullable="false" />
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DOB" Type="date" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="FirstName" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="Biography" Type="varchar" MaxLength="1000" />
@@ -149,8 +138,8 @@
     <Property Name="EndDate" Type="time" Precision="7" />
     <Property Name="CurrentJob" Type="bit" />
   </EntityType>
-  <Association Name="FK__Education__UserI__725BF7F6">
-    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+  <Association Name="FK__Education__UserI__4277DAAA">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
     <End Role="Education" Type="Self.Education" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserProfile">
@@ -161,7 +150,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Photo__UserId__68D28DBC">
+  <Association Name="FK__Photo__UserId__38EE7070">
     <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
     <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
     <ReferentialConstraint>
@@ -173,7 +162,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Position__6F7F8B4B">
+  <Association Name="FK__Position__3F9B6DFF">
     <End Role="Work_History" Type="Self.Work_History" Multiplicity="1" />
     <End Role="Position" Type="Self.Position" Multiplicity="*" />
     <ReferentialConstraint>
@@ -187,7 +176,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Post__UserId__640DD89F">
+  <Association Name="FK__Post__UserId__3429BB53">
     <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
     <End Role="Post" Type="Self.Post" Multiplicity="*" />
     <ReferentialConstraint>
@@ -199,31 +188,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__School_De__Educa__753864A1">
-    <End Role="Education" Type="Self.Education" Multiplicity="0..1" />
-    <End Role="School_Department" Type="Self.School_Department" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Education">
-        <PropertyRef Name="EducationId" />
-      </Principal>
-      <Dependent Role="School_Department">
-        <PropertyRef Name="EducationId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__School_Pr__Depar__7814D14C">
-    <End Role="School_Department" Type="Self.School_Department" Multiplicity="0..1" />
-    <End Role="School_Program" Type="Self.School_Program" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="School_Department">
-        <PropertyRef Name="DepartmentId" />
-      </Principal>
-      <Dependent Role="School_Program">
-        <PropertyRef Name="DepartmentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Work_Hist__Curre__6CA31EA0">
+  <Association Name="FK__Work_Hist__Curre__3CBF0154">
     <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
     <End Role="Work_History" Type="Self.Work_History" Multiplicity="*" />
     <ReferentialConstraint>
@@ -303,35 +268,25 @@
     <EntitySet Name="Photo" EntityType="Self.Photo" Schema="ryanajaxuser" store:Type="Tables" />
     <EntitySet Name="Position" EntityType="Self.Position" Schema="ryanajaxuser" store:Type="Tables" />
     <EntitySet Name="Post" EntityType="Self.Post" Schema="ryanajaxuser" store:Type="Tables" />
-    <EntitySet Name="School_Department" EntityType="Self.School_Department" Schema="ryanajaxuser" store:Type="Tables" />
-    <EntitySet Name="School_Program" EntityType="Self.School_Program" Schema="ryanajaxuser" store:Type="Tables" />
     <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="ryanajaxuser" store:Type="Tables" />
     <EntitySet Name="Work_History" EntityType="Self.Work_History" Schema="ryanajaxuser" store:Type="Tables" />
-    <AssociationSet Name="FK__Education__UserI__725BF7F6" Association="Self.FK__Education__UserI__725BF7F6">
+    <AssociationSet Name="FK__Education__UserI__4277DAAA" Association="Self.FK__Education__UserI__4277DAAA">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Education" EntitySet="Education" />
     </AssociationSet>
-    <AssociationSet Name="FK__Photo__UserId__68D28DBC" Association="Self.FK__Photo__UserId__68D28DBC">
+    <AssociationSet Name="FK__Photo__UserId__38EE7070" Association="Self.FK__Photo__UserId__38EE7070">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Photo" EntitySet="Photo" />
     </AssociationSet>
-    <AssociationSet Name="FK__Position__6F7F8B4B" Association="Self.FK__Position__6F7F8B4B">
+    <AssociationSet Name="FK__Position__3F9B6DFF" Association="Self.FK__Position__3F9B6DFF">
       <End Role="Work_History" EntitySet="Work_History" />
       <End Role="Position" EntitySet="Position" />
     </AssociationSet>
-    <AssociationSet Name="FK__Post__UserId__640DD89F" Association="Self.FK__Post__UserId__640DD89F">
+    <AssociationSet Name="FK__Post__UserId__3429BB53" Association="Self.FK__Post__UserId__3429BB53">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Post" EntitySet="Post" />
     </AssociationSet>
-    <AssociationSet Name="FK__School_De__Educa__753864A1" Association="Self.FK__School_De__Educa__753864A1">
-      <End Role="Education" EntitySet="Education" />
-      <End Role="School_Department" EntitySet="School_Department" />
-    </AssociationSet>
-    <AssociationSet Name="FK__School_Pr__Depar__7814D14C" Association="Self.FK__School_Pr__Depar__7814D14C">
-      <End Role="School_Department" EntitySet="School_Department" />
-      <End Role="School_Program" EntitySet="School_Program" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Work_Hist__Curre__6CA31EA0" Association="Self.FK__Work_Hist__Curre__6CA31EA0">
+    <AssociationSet Name="FK__Work_Hist__Curre__3CBF0154" Association="Self.FK__Work_Hist__Curre__3CBF0154">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Work_History" EntitySet="Work_History" />
     </AssociationSet>

@@ -31,13 +31,11 @@ namespace ajax
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Education> Educations { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
-        public virtual DbSet<School_Department> School_Department { get; set; }
-        public virtual DbSet<School_Program> School_Program { get; set; }
-        public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<Work_History> Work_History { get; set; }
+        public virtual DbSet<UserProfile> UserProfiles { get; set; }
+        public virtual DbSet<Education> Educations { get; set; }
     }
 }

@@ -17,14 +17,14 @@ namespace ajax
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserProfile()
         {
-            this.Educations = new HashSet<Education>();
             this.Photos = new HashSet<Photo>();
             this.Posts = new HashSet<Post>();
             this.Work_History = new HashSet<Work_History>();
+            this.Educations = new HashSet<Education>();
         }
     
         public int UserId { get; set; }
-        public System.TimeSpan DOB { get; set; }
+        public System.DateTime DOB { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Biography { get; set; }
@@ -33,12 +33,12 @@ namespace ajax
         public Nullable<bool> AlbumAllPublished { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Education> Educations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Photo> Photos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Work_History> Work_History { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Education> Educations { get; set; }
     }
 }

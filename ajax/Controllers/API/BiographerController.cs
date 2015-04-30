@@ -39,10 +39,23 @@ namespace ajax.Controllers
             //return "hey";
         }
         [ResponseType(typeof(EducationRepository))]
-        public void PostEducation(EducationModel educationModel)
+        public string PostEducation(EducationModel educationModel)
         {
-            EducationRepository EducationRepo = new EducationRepository();
-            EducationRepo.AddEducation(educationModel);
+            string result = string.Empty;
+            if (ModelState.IsValid)
+            {
+                EducationRepository EducationRepo = new EducationRepository();
+                if (EducationRepo.AddEducation(educationModel))
+                {
+                    result = "Education is successfully added.";
+                }
+                else
+                {
+                    result = "Failed to add education history.";
+                }
+            }
+
+            return result;
         }
     }
 }
