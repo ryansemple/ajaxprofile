@@ -3,16 +3,6 @@ DROP TABLE Position;
 
 GO 
 
-IF OBJECT_ID('School_Program') IS NOT NULL
-DROP TABLE School_Program;
-
-GO 
-
-IF OBJECT_ID('School_Department') IS NOT NULL
-DROP TABLE School_Department;
-
-GO 
-
 IF OBJECT_ID('Education') IS NOT NULL
 DROP TABLE Education;
 
@@ -85,24 +75,14 @@ CREATE TABLE Position(
 );
 
 CREATE TABLE Education(
-	EducationId INT IDENTITY(1,1) PRIMARY KEY,
 	School VARCHAR(100) NOT NULL,
 	Education_Level VARCHAR(20) NOT NULL,
+	Department VARCHAR(100) NOT NULL,
+	Program VARCHAR(100) NOT NULL,
 	UserId INT,
 	FOREIGN KEY (UserId) REFERENCES ryanajaxuser.UserProfile (UserId),
+	PRIMARY KEY (School, Education_Level, Department, Program, UserId)
 );
 
-CREATE TABLE School_Department(
-	DepartmentId INT IDENTITY(1,1) PRIMARY KEY,
-	Department VARCHAR(100) NOT NULL,
-	EducationId INT,
-	FOREIGN KEY (EducationId) REFERENCES Education (EducationId)
-);
 
-CREATE TABLE School_Program(
-	ProgramId INT IDENTITY(1,1) PRIMARY KEY,
-	Program VARCHAR(100),
-	DepartmentId INT,
-	FOREIGN KEY (DepartmentId) REFERENCES School_Department (DepartmentId)
-);
 
