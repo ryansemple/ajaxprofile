@@ -38,24 +38,6 @@ namespace ajax.Controllers
             return profileRepo.getBiography();
             //return "hey";
         }
-        [ResponseType(typeof(EducationRepository))]
-        public string PostEducation(EducationModel educationModel)
-        {
-            string result = string.Empty;
-            if (ModelState.IsValid)
-            {
-                EducationRepository EducationRepo = new EducationRepository();
-                if (EducationRepo.AddEducation(educationModel))
-                {
-                    result = "Education is successfully added.";
-                }
-                else
-                {
-                    result = "Failed to add education history.";
-                }
-            }
-
-            return result;
-        }
+        
     }
 }

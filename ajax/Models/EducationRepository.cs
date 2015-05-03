@@ -30,5 +30,27 @@ namespace ajax.Models
 
             return processResult;
         }
+
+        public EducationModel GetEducationModel(int userId)
+        {
+            ryanajaxEntities context = new ryanajaxEntities();
+            var query = context.Educations.Where(c => c.UserId == userId).Select(c => c).FirstOrDefault();
+            EducationModel educationModel = new EducationModel();
+            EducationModel ed = new EducationModel();
+            ed.Department = query.Department;
+            ed.EducationLevel = query.Education_Level;
+            ed.Program = query.Program;
+            ed.School = query.School;
+            ed.UserId = query.UserId;
+            return ed;
+        }
+
+        public void DeleteEducation(int userId)
+        {
+            ryanajaxEntities context = new ryanajaxEntities();
+            Education query = context.Educations.Where(c => c.UserId == userId).Select(c => c).FirstOrDefault();
+            context.Educations.Remove(query);
+            context.SaveChanges();
+        }
     }
 }
