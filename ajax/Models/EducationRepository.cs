@@ -28,6 +28,7 @@ namespace ajax.Models
             catch (Exception error)
             { processResult = false; }
 
+            context.Dispose();
             return processResult;
         }
 
@@ -51,6 +52,20 @@ namespace ajax.Models
             Education query = context.Educations.Where(c => c.UserId == userId).Select(c => c).FirstOrDefault();
             context.Educations.Remove(query);
             context.SaveChanges();
+        }
+
+        public bool UpdateEducation(EducationModel educationModel)
+        {
+            bool processResult = true;
+            ryanajaxEntities context = new ryanajaxEntities();
+
+            // Delete old record
+            DeleteEducation(educationModel.UserId);
+            // Add new record
+            AddEducation(educationModel);
+
+            context.Dispose();
+            return processResult;
         }
     }
 }

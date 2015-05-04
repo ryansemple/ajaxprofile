@@ -38,7 +38,7 @@ function DisplayEducation(x) {
                     '<h4>Level: </h4><div class="display-level col-lg-12">' + data.EducationLevel + '</div>' +
                     '<h4>Department: </h4><div class="display-department col-lg-12">' + data.Department + '</div>' +
                     '<h4>Program: </h4><div class="display-program col-lg-12">' + data.Program + '</div>' +
-                    '<div class=""><a href="#" onClick="EditEducation()">Edit</a></div>' + 
+                    '<div class=""><a href="#" onClick="DisplayEditEducation()">Edit</a></div>' +
                     '</div>'
                 );
             $(".education-display").css({ 'margin': '5px', 'border': '1px solid grey', 'padding': '10px' });
@@ -58,7 +58,7 @@ function DeleteEducation(){
     });
 }
 
-function EditEducation() {
+function DisplayEditEducation() {
 
     $("#live_profile_wrap").append(
                     '<div class="row education-edit form-group">' +
@@ -71,11 +71,37 @@ function EditEducation() {
                         '<label>School: </label>' + '<input class="level form-control" value=' + $(".display-level").html() + '>' +
                         '<label>School: </label>' + '<input class="department form-control" value=' + $(".display-department").html() + '>' +
                         '<label>School: </label>' + '<input class="program form-control" value=' + $(".display-program").html() + '>' +
+                        '<div>' +
+                            '<a class="close-education-display" href="#">' +
+                            '<span class="glyphicon glyphicon-ok" onClick="EditEducation()"></span>' +
+                            '</a>' +
+                        '<div>' +
                     '</div>'
                 );
     $(".education-edit").css({ 'margin': '5px', 'border': '1px solid grey', 'padding': '10px' });
 
     $(".education-display").remove();
+}
+
+function EditEducation() {
+    var URL = "http://" + location.host + "/api/Education/";
+    var EducationModel = {
+        UserId: 1,
+        School: $(".school").val(),
+        EducationLevel: $(".level").val(),
+        Department: $(".department").val(),
+        Program: $(".program").val()
+    };
+    $.ajax({
+        url: URL,
+        type: "PUT",
+        data: JSON.stringify(EducationModel),
+        contentType: "application/json;charset=utf-8",
+        success: function (data) {
+            $(".education-edit.form-group").remove();
+            DisplayEducation(1);
+        }
+    });
 }
 
 function CancelEditEducation() {

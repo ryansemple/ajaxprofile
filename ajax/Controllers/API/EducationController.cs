@@ -45,5 +45,24 @@ namespace ajax.Controllers.API
             EducationRepo.DeleteEducation(userId);
             return "Education is deleted.";
         }
+
+        public string PutEducation(EducationModel educationModel)
+        {
+            string result = string.Empty;
+            if (ModelState.IsValid)
+            {
+                EducationRepository EducationRepo = new EducationRepository();
+                if (EducationRepo.UpdateEducation(educationModel))
+                {
+                    result = "Education is successfully added.";
+                }
+                else
+                {
+                    result = "Failed to add education history.";
+                }
+            }
+
+            return result;
+        }
     }
 }
