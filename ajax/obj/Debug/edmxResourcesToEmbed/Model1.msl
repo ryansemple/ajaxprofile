@@ -116,20 +116,6 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="UserProfiles">
-      <EntityTypeMapping TypeName="ryanajaxModel.UserProfile">
-        <MappingFragment StoreEntitySet="UserProfile">
-          <ScalarProperty Name="AlbumAllPublished" ColumnName="AlbumAllPublished" />
-          <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
-          <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
-          <ScalarProperty Name="Biography" ColumnName="Biography" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="DOB" ColumnName="DOB" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Educations">
       <EntityTypeMapping TypeName="ryanajaxModel.Education">
         <MappingFragment StoreEntitySet="Education">
@@ -138,6 +124,21 @@
           <ScalarProperty Name="Department" ColumnName="Department" />
           <ScalarProperty Name="Education_Level" ColumnName="Education_Level" />
           <ScalarProperty Name="School" ColumnName="School" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfiles">
+      <EntityTypeMapping TypeName="ryanajaxModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="AlbumAllPublished" ColumnName="AlbumAllPublished" />
+          <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
+          <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
+          <ScalarProperty Name="Biography" ColumnName="Biography" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

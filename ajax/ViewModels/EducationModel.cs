@@ -18,5 +18,16 @@ namespace ajax.ViewModels
         public string Department { get; set; }
         [Required]
         public string Program { get; set; }
+
+        public EducationModel(int userId, string school, string educationLevel, string department, string program)
+        {
+            this.UserId = userId;
+            this.School = school;
+            this.EducationLevel = educationLevel;
+            this.Department = department;
+            this.Program = program;
+        }
+
+        public EducationModel() { }
     }
 }

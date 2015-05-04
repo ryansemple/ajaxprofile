@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using ajax.ViewModels;
 using ajax.Models;
+using System.Threading;
 
 namespace ajax.Controllers.API
 {
@@ -32,17 +33,31 @@ namespace ajax.Controllers.API
             return result;
         }
 
-        public EducationModel GetEducation(int userId)
+        public List<EducationModel> GetEducation(int userId)
         {
             EducationRepository EducationRepo = new EducationRepository();
-            EducationModel ed = EducationRepo.GetEducationModel(userId);
+            List<EducationModel> ed = new List<EducationModel>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                try
+                {
+                    ed = EducationRepo.GetEducationModel(userId);
+                    if (ed != null)
+                        break;
+                }
+                catch(Exception error)
+                { }
+                //Thread.Sleep(1000);
+            }
+                
             return ed;
         }
 
-        public string DeleteEducation(int userId)
+        public string DeleteEducation(EducationModel educationModel)
         {
             EducationRepository EducationRepo = new EducationRepository();
-            EducationRepo.DeleteEducation(userId);
+            EducationRepo.DeleteEducation(educationModel);
             return "Education is deleted.";
         }
 

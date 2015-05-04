@@ -32,24 +32,38 @@ namespace ajax.Models
             return processResult;
         }
 
-        public EducationModel GetEducationModel(int userId)
+        public List<EducationModel> GetEducationModel(int userId)
         {
             ryanajaxEntities context = new ryanajaxEntities();
-            var query = context.Educations.Where(c => c.UserId == userId).Select(c => c).FirstOrDefault();
-            EducationModel educationModel = new EducationModel();
-            EducationModel ed = new EducationModel();
-            ed.Department = query.Department;
-            ed.EducationLevel = query.Education_Level;
-            ed.Program = query.Program;
-            ed.School = query.School;
-            ed.UserId = query.UserId;
+            //var query = context.Educations.Where(c => c.UserId == userId).Select(c => c).FirstOrDefault();
+            var query = context.Educations.Where(c => c.UserId == userId).Select(c => c);
+            List<EducationModel> ed = new List<EducationModel>();
+            foreach (var item in query)
+            {
+                ed.Add(new EducationModel(
+                        item.UserId,
+                        item.School,
+                        item.Education_Level,
+                        item.Department,
+                        item.Program
+                    ));
+            }
+            //ed.Department = query.Department;
+            //ed.EducationLevel = query.Education_Level;
+            //ed.Program = query.Program;
+            //ed.School = query.School;
+            //ed.UserId = query.UserId;
             return ed;
         }
 
-        public void DeleteEducation(int userId)
+        public void DeleteEducation(EducationModel educationModel)
         {
             ryanajaxEntities context = new ryanajaxEntities();
-            Education query = context.Educations.Where(c => c.UserId == userId).Select(c => c).FirstOrDefault();
+            Education query = (from e in context.Educations
+                               where e.School == educationModel.School && e.Education_Level == educationModel.EducationLevel
+                                     && e.UserId == educationModel.UserId && e.Program == educationModel.Program
+                                     && e.Department == educationModel.Department
+                               select e).FirstOrDefault();
             context.Educations.Remove(query);
             context.SaveChanges();
         }
@@ -60,7 +74,7 @@ namespace ajax.Models
             ryanajaxEntities context = new ryanajaxEntities();
 
             // Delete old record
-            DeleteEducation(educationModel.UserId);
+            DeleteEducation(educationModel);
             // Add new record
             AddEducation(educationModel);
 

@@ -79,6 +79,7 @@ namespace ajax.Controllers
                 authenticationManager.SignIn(new AuthenticationProperties() { },
                                              userIdentity);
                 ProfileRepository profileRepo = new ProfileRepository();
+                profileRepo.AddUser("", "");
             }
             return View();
         }
@@ -93,6 +94,10 @@ namespace ajax.Controllers
         [HttpGet]
         public ActionResult Profile()
         {
+            ryanajaxEntities context = new ryanajaxEntities();
+            string email = context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).Select(e => e.Email).FirstOrDefault();
+            int userId = context.UserProfiles.Where(c => c.Email == email).Select(c => c.UserId).FirstOrDefault();
+            ViewBag.userId = userId;
             return View();
         }
     }

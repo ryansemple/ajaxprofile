@@ -126,6 +126,7 @@
     <Property Name="ProfilePhoto" Type="varchar" MaxLength="255" />
     <Property Name="AlbumName" Type="varchar" MaxLength="30" />
     <Property Name="AlbumAllPublished" Type="bit" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Work_History">
     <Key>

@@ -131,6 +131,7 @@
           <Property Name="ProfilePhoto" Type="varchar" MaxLength="255" />
           <Property Name="AlbumName" Type="varchar" MaxLength="30" />
           <Property Name="AlbumAllPublished" Type="bit" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Work_History">
           <Key>
@@ -394,7 +395,7 @@
           <Property Name="LikeToken" Type="Boolean" />
           <Property Name="Published" Type="Boolean" />
           <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Photo__UserId__1E3A7A34" FromRole="Photo" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Photo__UserId__38EE7070" FromRole="Photo" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -415,7 +416,7 @@
           <Property Name="PostContent" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LikeToken" Type="Boolean" />
           <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Post__UserId__1975C517" FromRole="Post" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Post__UserId__3429BB53" FromRole="Post" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Work_History">
           <Key>
@@ -428,7 +429,7 @@
           <Property Name="EndDate" Type="Time" Precision="7" />
           <Property Name="CurrentJob" Type="Boolean" />
           <NavigationProperty Name="Positions" Relationship="Self.FK__Position__6F7F8B4B" FromRole="Work_History" ToRole="Position" />
-          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Work_Hist__Curre__220B0B18" FromRole="Work_History" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Work_Hist__Curre__3CBF0154" FromRole="Work_History" ToRole="UserProfile" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -503,78 +504,25 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="UserProfiles" EntityType="ryanajaxModel.UserProfile" />
-          <AssociationSet Name="FK__Photo__UserId__1E3A7A34" Association="ryanajaxModel.FK__Photo__UserId__1E3A7A34">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="Photo" EntitySet="Photos" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Post__UserId__1975C517" Association="ryanajaxModel.FK__Post__UserId__1975C517">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="Post" EntitySet="Posts" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Work_Hist__Curre__220B0B18" Association="ryanajaxModel.FK__Work_Hist__Curre__220B0B18">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="Work_History" EntitySet="Work_History" />
-          </AssociationSet>
           <EntitySet Name="Educations" EntityType="ryanajaxModel.Education" />
+          <EntitySet Name="UserProfiles" EntityType="ryanajaxModel.UserProfile" />
           <AssociationSet Name="FK__Education__UserI__4277DAAA" Association="ryanajaxModel.FK__Education__UserI__4277DAAA">
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="Education" EntitySet="Educations" />
           </AssociationSet>
+          <AssociationSet Name="FK__Photo__UserId__38EE7070" Association="ryanajaxModel.FK__Photo__UserId__38EE7070">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Photo" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__UserId__3429BB53" Association="ryanajaxModel.FK__Post__UserId__3429BB53">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Work_Hist__Curre__3CBF0154" Association="ryanajaxModel.FK__Work_Hist__Curre__3CBF0154">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Work_History" EntitySet="Work_History" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="UserProfile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Biography" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="ProfilePhoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="AlbumName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="AlbumAllPublished" Type="Boolean" />
-          <NavigationProperty Name="Photos" Relationship="ryanajaxModel.FK__Photo__UserId__1E3A7A34" FromRole="UserProfile" ToRole="Photo" />
-          <NavigationProperty Name="Posts" Relationship="ryanajaxModel.FK__Post__UserId__1975C517" FromRole="UserProfile" ToRole="Post" />
-          <NavigationProperty Name="Work_History" Relationship="ryanajaxModel.FK__Work_Hist__Curre__220B0B18" FromRole="UserProfile" ToRole="Work_History" />
-          <NavigationProperty Name="Educations" Relationship="ryanajaxModel.FK__Education__UserI__4277DAAA" FromRole="UserProfile" ToRole="Education" />
-        </EntityType>
-        <Association Name="FK__Photo__UserId__1E3A7A34">
-          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
-          <End Type="ryanajaxModel.Photo" Role="Photo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Photo">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Post__UserId__1975C517">
-          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
-          <End Type="ryanajaxModel.Post" Role="Post" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Post">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Work_Hist__Curre__220B0B18">
-          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="1" />
-          <End Type="ryanajaxModel.Work_History" Role="Work_History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Work_History">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Education">
           <Key>
             <PropertyRef Name="School" />
@@ -590,6 +538,24 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__Education__UserI__4277DAAA" FromRole="Education" ToRole="UserProfile" />
         </EntityType>
+        <EntityType Name="UserProfile">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Biography" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilePhoto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AlbumName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AlbumAllPublished" Type="Boolean" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Educations" Relationship="ryanajaxModel.FK__Education__UserI__4277DAAA" FromRole="UserProfile" ToRole="Education" />
+          <NavigationProperty Name="Photos" Relationship="ryanajaxModel.FK__Photo__UserId__38EE7070" FromRole="UserProfile" ToRole="Photo" />
+          <NavigationProperty Name="Posts" Relationship="ryanajaxModel.FK__Post__UserId__3429BB53" FromRole="UserProfile" ToRole="Post" />
+          <NavigationProperty Name="Work_History" Relationship="ryanajaxModel.FK__Work_Hist__Curre__3CBF0154" FromRole="UserProfile" ToRole="Work_History" />
+        </EntityType>
         <Association Name="FK__Education__UserI__4277DAAA">
           <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="1" />
           <End Type="ryanajaxModel.Education" Role="Education" Multiplicity="*" />
@@ -598,6 +564,42 @@
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="Education">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Photo__UserId__38EE7070">
+          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ryanajaxModel.Photo" Role="Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__UserId__3429BB53">
+          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ryanajaxModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Work_Hist__Curre__3CBF0154">
+          <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="ryanajaxModel.Work_History" Role="Work_History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Work_History">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -723,20 +725,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="UserProfiles">
-            <EntityTypeMapping TypeName="ryanajaxModel.UserProfile">
-              <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="AlbumAllPublished" ColumnName="AlbumAllPublished" />
-                <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
-                <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
-                <ScalarProperty Name="Biography" ColumnName="Biography" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Educations">
             <EntityTypeMapping TypeName="ryanajaxModel.Education">
               <MappingFragment StoreEntitySet="Education">
@@ -745,6 +733,21 @@
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="Education_Level" ColumnName="Education_Level" />
                 <ScalarProperty Name="School" ColumnName="School" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfiles">
+            <EntityTypeMapping TypeName="ryanajaxModel.UserProfile">
+              <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AlbumAllPublished" ColumnName="AlbumAllPublished" />
+                <ScalarProperty Name="AlbumName" ColumnName="AlbumName" />
+                <ScalarProperty Name="ProfilePhoto" ColumnName="ProfilePhoto" />
+                <ScalarProperty Name="Biography" ColumnName="Biography" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
