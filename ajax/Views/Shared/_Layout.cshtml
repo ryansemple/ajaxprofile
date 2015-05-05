@@ -28,7 +28,7 @@
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                         <li><a href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp; Logout</a></li>
-                        <li><a href="@Url.Action("Profile", "Home")"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profile</a></li>
+                        <li><a href="@Url.Action("Profile", "Home")"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; Profile (@User.Identity.Name)</a></li>
                     }
                     else
                     {

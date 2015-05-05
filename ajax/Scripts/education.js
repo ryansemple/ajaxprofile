@@ -41,8 +41,8 @@ function DisplayAddEducation(x) {
                         '<label>Department</label>' + '<input class="add-department form-control">' +
                         '<label>Program</label>' + '<input class="add-program form-control">' +
                         '<div class="text-right">' +
-                            '<a class="close-education-display" href="#">' +
-                            '<span class="glyphicon glyphicon-ok" onClick="Create(' + x + ')"></span> Add' + 
+                            '<a class="close-education-display" href="#" onClick="Create(' + x + ')">' +
+                            '<span class="glyphicon glyphicon-ok"></span> Add' + 
                             '</a>' +
                         '<div>' +
                     '</div>'
@@ -119,9 +119,7 @@ function DeleteEducation(counter, x, educationId) {
         data: JSON.stringify(EducationModel),
         contentType: "application/json;charset=utf-8",
         success: function (data) {
-            //alert(data);
-            $(".education-display").remove();
-            DisplayEducation($("#userId").val());
+            $('#' + counter).fadeOut();
         }
     });
 }

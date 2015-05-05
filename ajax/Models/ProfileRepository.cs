@@ -24,14 +24,18 @@ namespace ajax.Models
             return aProfile.Biography;
         }
 
-        public void AddUser(string lastName, string firstName)
+        public void AddUser(string lastName, string firstName, string userName)
         {
             ryanajaxEntities context = new ryanajaxEntities();
+
+            string email = context.AspNetUsers.Where(c => c.Email == userName).Select(u => u.Email).FirstOrDefault();
             UserProfile userProfile = new UserProfile();
             userProfile.DOB = DateTime.Now;
             userProfile.FirstName = firstName;
             userProfile.LastName = lastName;
+            userProfile.Email = email;
             context.UserProfiles.Add(userProfile);
+
             context.SaveChanges();
         }
     }

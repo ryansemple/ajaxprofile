@@ -79,7 +79,8 @@ namespace ajax.Controllers
                 authenticationManager.SignIn(new AuthenticationProperties() { },
                                              userIdentity);
                 ProfileRepository profileRepo = new ProfileRepository();
-                profileRepo.AddUser("", "");
+                profileRepo.AddUser("", "", newUser.UserName);
+    
             }
             return View();
         }

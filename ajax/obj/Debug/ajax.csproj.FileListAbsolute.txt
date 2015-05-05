@@ -169,3 +169,4 @@ D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.WebPages.Razor.xml
 D:\GitHub Repository\ajaxprofile\ajax\obj\Debug\ajax.csprojResolveAssemblyReference.cache
 D:\GitHub Repository\ajaxprofile\ajax\obj\Debug\ajax.dll
 D:\GitHub Repository\ajaxprofile\ajax\obj\Debug\ajax.pdb
+F:\ajaxprofile\ajax\obj\Debug\ajax.csprojResolveAssemblyReference.cache
