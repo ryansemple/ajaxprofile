@@ -127,3 +127,46 @@ F:\ajaxprofile\ajax\bin\System.Web.WebPages.xml
 F:\ajaxprofile\ajax\bin\System.Web.WebPages.Deployment.xml
 F:\ajaxprofile\ajax\bin\System.Web.WebPages.Razor.xml
 F:\ajaxprofile\ajax\obj\Debug\ajax.csprojResolveAssemblyReference.cache
+D:\GitHub Repository\ajaxprofile\ajax\bin\ajax.dll.config
+D:\GitHub Repository\ajaxprofile\ajax\bin\ajax.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\ajax.pdb
+D:\GitHub Repository\ajaxprofile\ajax\bin\EntityFramework.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\EntityFramework.SqlServer.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.AspNet.Identity.Core.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.Owin.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.Owin.Security.Cookies.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.Owin.Security.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\Newtonsoft.Json.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\Owin.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Net.Http.Formatting.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Helpers.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Http.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Http.WebHost.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Mvc.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Razor.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.WebPages.Deployment.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.WebPages.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.WebPages.Razor.dll
+D:\GitHub Repository\ajaxprofile\ajax\bin\EntityFramework.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\EntityFramework.SqlServer.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.AspNet.Identity.Core.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.Owin.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.Owin.Security.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\Microsoft.Owin.Security.Cookies.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\Newtonsoft.Json.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Net.Http.Formatting.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Helpers.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Http.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Http.WebHost.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Mvc.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.Razor.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.WebPages.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.WebPages.Deployment.xml
+D:\GitHub Repository\ajaxprofile\ajax\bin\System.Web.WebPages.Razor.xml
+D:\GitHub Repository\ajaxprofile\ajax\obj\Debug\ajax.csprojResolveAssemblyReference.cache
+D:\GitHub Repository\ajaxprofile\ajax\obj\Debug\ajax.dll
+D:\GitHub Repository\ajaxprofile\ajax\obj\Debug\ajax.pdb

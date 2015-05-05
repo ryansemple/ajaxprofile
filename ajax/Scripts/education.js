@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    UID = $("#userId").val();
     DisplayEducation($("#userId").val());
 });
 
@@ -81,12 +82,13 @@ function DisplayEducation(x) {
                     '<div class="display-level col-lg-12">' + value.EducationLevel + '</div>' +
                     '<div class="display-department col-lg-4">' + value.Department + '</div>' +
                     '<div class="display-program col-lg-8">' + value.Program + '</div>' +
-                    '<div class="education-edit-link">' +
-                        '<a href="#" onClick="DisplayEditEducation()"><span class="glyphicon glyphicon-pencil"></span> Edit</a>' +
+                    '<div class="education-edit-link text-right">' +
+                        '<a href="#" onClick="DisplayEditEducation(' + x + ')"><span class="glyphicon glyphicon-pencil"></span> Edit</a>' +
                     '</div>' +
                     '</div>'
                 );
-                $(".education-display").css({ 'margin': '5px', 'border': '1px solid grey', 'padding': '10px' });
+                //$(".education-display").css({ 'margin': '5px', 'border': '1px solid grey', 'padding': '10px' });
+                $(".education-display").css({ 'margin': '5px', 'background': '#F5F5F5', 'padding': '10px' });
                 $(".education-edit-link").css({ 'margin-top': '15px' });
                 counter++;
             });
