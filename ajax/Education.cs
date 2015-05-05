@@ -19,6 +19,7 @@ namespace ajax
         public string Department { get; set; }
         public string Program { get; set; }
         public int UserId { get; set; }
+        public int EducationId { get; set; }
     
         public virtual UserProfile UserProfile { get; set; }
     }

@@ -12,6 +12,15 @@ namespace ajax.Models
         {
             bool processResult = true;
             ryanajaxEntities context = new ryanajaxEntities();
+            var query = from c in context.Educations
+                        where c.School == educationModel.School
+                        && c.Department == educationModel.Department
+                        && c.Education_Level == educationModel.EducationLevel
+                        && c.Program == educationModel.Program
+                        select c;
+
+            if (query.ToList().Count() > 0)
+            { return false; }
 
             Education education = new Education();
 
@@ -41,6 +50,7 @@ namespace ajax.Models
             foreach (var item in query)
             {
                 ed.Add(new EducationModel(
+                        item.EducationId,
                         item.UserId,
                         item.School,
                         item.Education_Level,
@@ -60,9 +70,7 @@ namespace ajax.Models
         {
             ryanajaxEntities context = new ryanajaxEntities();
             Education query = (from e in context.Educations
-                               where e.School == educationModel.School && e.Education_Level == educationModel.EducationLevel
-                                     && e.UserId == educationModel.UserId && e.Program == educationModel.Program
-                                     && e.Department == educationModel.Department
+                               where e.EducationId == educationModel.EducationId
                                select e).FirstOrDefault();
             context.Educations.Remove(query);
             context.SaveChanges();
@@ -72,11 +80,16 @@ namespace ajax.Models
         {
             bool processResult = true;
             ryanajaxEntities context = new ryanajaxEntities();
+            Education query = (from c in context.Educations
+                               where c.EducationId == educationModel.EducationId
+                               select c).FirstOrDefault();
 
-            // Delete old record
-            DeleteEducation(educationModel);
-            // Add new record
-            AddEducation(educationModel);
+            query.Program = educationModel.Program;
+            query.School = educationModel.School;
+            query.Education_Level = educationModel.EducationLevel;
+            query.Department = educationModel.Department;
+
+            context.SaveChanges();
 
             context.Dispose();
             return processResult;

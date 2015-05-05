@@ -5,16 +5,8 @@
 
 function Create(x) {
     jQuery.support.cors = true;
-    console.log(x);
-    //var EducationModel = {
-    //    UserId: x,
-    //    School: "BCIT",
-    //    EducationLevel: "Certificate",
-    //    Department: "HTP",
-    //    Program: "SSDP"
-    //};
-
     var EducationModel = {
+        EducationId: 0,
         UserId: x,
         School: $(".add-school").val(),
         EducationLevel: $(".add-level").val(),
@@ -36,6 +28,7 @@ function Create(x) {
 }
 
 function DisplayAddEducation(x) {
+    $(".education-add-link").hide();
     $("#live_profile_wrap").append(
                     '<div class="row education-add form-group">' +
                         '<div>' +
@@ -47,16 +40,19 @@ function DisplayAddEducation(x) {
                         '<label>Education Level</label>' + '<input class="add-level form-control">' +
                         '<label>Department</label>' + '<input class="add-department form-control">' +
                         '<label>Program</label>' + '<input class="add-program form-control">' +
-                        '<div>' +
+                        '<div class="text-right">' +
                             '<a class="close-education-display" href="#">' +
-                            '<span class="glyphicon glyphicon-ok" onClick="Create(' + x + ')"></span>' +
+                            '<span class="glyphicon glyphicon-ok" onClick="Create(' + x + ')"></span> Add' + 
                             '</a>' +
                         '<div>' +
                     '</div>'
                 );
-    $(".education-edit").css({ 'margin': '5px', 'border': '1px solid grey', 'padding': '10px' });
+    $(".education-add").css({ 'margin': '5px', 'border': '1px solid grey', 'padding': '10px' });
 
     $(".education-display").remove();
+
+    $(".education-add").hide();
+    $(".education-add").fadeIn();
 }
 
 function CancelAddEducation(x) {
@@ -66,6 +62,7 @@ function CancelAddEducation(x) {
 
 function DisplayEducation(x) {
     var URL = "http://" + location.host + "/api/Education?userId=" + x;
+    $(".education-add-link").show();
     $.getJSON(
         URL,
         function (data) {
@@ -75,7 +72,7 @@ function DisplayEducation(x) {
                     '<div id=' + counter + ' class="row education-display">' +
                     '<div>' +
                         '<a class="close-education-display" href="#">' +
-                        '<span class="glyphicon glyphicon-remove" onClick="DeleteEducation(' + counter + ',' + x + ')"></span>' +
+                        '<span class="glyphicon glyphicon-remove" onClick="DeleteEducation(' + counter + ',' + x + ',' + value.EducationId + ')"></span>' +
                         '</a>' +
                     '<div>' +
                     '<h4 class="display-school col-lg-12">' + value.School + '</h4>' +
@@ -83,25 +80,31 @@ function DisplayEducation(x) {
                     '<div class="display-department col-lg-4">' + value.Department + '</div>' +
                     '<div class="display-program col-lg-8">' + value.Program + '</div>' +
                     '<div class="education-edit-link text-right">' +
-                        '<a href="#" onClick="DisplayEditEducation(' + x + ')"><span class="glyphicon glyphicon-pencil"></span> Edit</a>' +
+                        '<a href="#" onClick="DisplayEditEducation(' + counter + ',' + x + ',' + value.EducationId + ')"><span class="glyphicon glyphicon-pencil"></span> Edit</a>' +
                     '</div>' +
                     '</div>'
                 );
+                
                 //$(".education-display").css({ 'margin': '5px', 'border': '1px solid grey', 'padding': '10px' });
                 $(".education-display").css({ 'margin': '5px', 'background': '#F5F5F5', 'padding': '10px' });
                 $(".education-edit-link").css({ 'margin-top': '15px' });
+                
                 counter++;
             });
+
+            $(".education-display").hide();
+            $(".education-display").fadeIn();
     });
 }
 
-function DeleteEducation(counter, x) {
+function DeleteEducation(counter, x, educationId) {
     var school = $('#' + counter).find('.display-school').html();
     var department = $('#' + counter).find('.display-department').html();
     var level = $('#' + counter).find('.display-level').html();
     var program = $('#' + counter).find('.display-program').html();
 
     var EducationModel = {
+        EducationId: educationId,
         UserId: x,
         School: school,
         EducationLevel: level,
@@ -118,11 +121,17 @@ function DeleteEducation(counter, x) {
         success: function (data) {
             //alert(data);
             $(".education-display").remove();
+            DisplayEducation($("#userId").val());
         }
     });
 }
 
-function DisplayEditEducation(x) {
+function DisplayEditEducation(counter, x, educationId) {
+    $(".education-add-link").hide();
+    var school = $('#' + counter).find('.display-school').html();
+    var department = $('#' + counter).find('.display-department').html();
+    var level = $('#' + counter).find('.display-level').html();
+    var program = $('#' + counter).find('.display-program').html();
 
     $("#live_profile_wrap").append(
                     '<div class="row education-edit form-group">' +
@@ -131,13 +140,13 @@ function DisplayEditEducation(x) {
                             '<span class="glyphicon glyphicon-remove" onClick="CancelEditEducation(' + x + ')"></span>' +
                             '</a>' +
                         '<div>' +
-                        '<label>School</label>' + '<input class="school form-control" value=' + $(".display-school").html() + '>' +
-                        '<label>Education Level</label>' + '<input class="level form-control" value=' + $(".display-level").html() + '>' +
-                        '<label>Department</label>' + '<input class="department form-control" value=' + $(".display-department").html() + '>' +
-                        '<label>Program</label>' + '<input class="program form-control" value=' + $(".display-program").html() + '>' +
-                        '<div>' +
+                        '<label>School</label>' + '<input class="school form-control" value=' + school + '>' +
+                        '<label>Education Level</label>' + '<input class="level form-control" value=' + level + '>' +
+                        '<label>Department</label>' + '<input class="department form-control" value=' + department + '>' +
+                        '<label>Program</label>' + '<input class="program form-control" value=' + program + '>' +
+                        '<div class="text-right">' +
                             '<a class="close-education-display" href="#">' +
-                            '<span class="glyphicon glyphicon-ok" onClick="EditEducation(' + x + ')"></span>' +
+                            '<span class="glyphicon glyphicon-ok" onClick="EditEducation(' + x + ',' + educationId + ')"></span> Save' +
                             '</a>' +
                         '<div>' +
                     '</div>'
@@ -145,11 +154,15 @@ function DisplayEditEducation(x) {
     $(".education-edit").css({ 'margin': '5px', 'border': '1px solid grey', 'padding': '10px' });
 
     $(".education-display").remove();
+
+    $(".education-edit").hide();
+    $(".education-edit").fadeIn();
 }
 
-function EditEducation(x) {
+function EditEducation(x, educationId) {
     var URL = "http://" + location.host + "/api/Education/";
     var EducationModel = {
+        EducationId: educationId,
         UserId: x,
         School: $(".school").val(),
         EducationLevel: $(".level").val(),

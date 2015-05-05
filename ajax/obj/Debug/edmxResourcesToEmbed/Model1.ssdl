@@ -73,17 +73,14 @@
   </EntityType>
   <EntityType Name="Education">
     <Key>
-      <PropertyRef Name="School" />
-      <PropertyRef Name="Education_Level" />
-      <PropertyRef Name="Department" />
-      <PropertyRef Name="Program" />
-      <PropertyRef Name="UserId" />
+      <PropertyRef Name="EducationId" />
     </Key>
     <Property Name="School" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Education_Level" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Department" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Program" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="EducationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Photo">
     <Key>

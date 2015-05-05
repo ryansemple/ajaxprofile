@@ -126,7 +126,6 @@ F:\ajaxprofile\ajax\bin\System.Web.Razor.xml
 F:\ajaxprofile\ajax\bin\System.Web.WebPages.xml
 F:\ajaxprofile\ajax\bin\System.Web.WebPages.Deployment.xml
 F:\ajaxprofile\ajax\bin\System.Web.WebPages.Razor.xml
-F:\ajaxprofile\ajax\obj\Debug\ajax.csprojResolveAssemblyReference.cache
 D:\GitHub Repository\ajaxprofile\ajax\bin\ajax.dll.config
 D:\GitHub Repository\ajaxprofile\ajax\bin\ajax.dll
 D:\GitHub Repository\ajaxprofile\ajax\bin\ajax.pdb
