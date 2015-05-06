@@ -138,10 +138,10 @@ function DisplayEditEducation(counter, x, educationId) {
                             '<span class="glyphicon glyphicon-remove" onClick="CancelEditEducation(' + x + ')"></span>' +
                             '</a>' +
                         '<div>' +
-                        '<label>School</label>' + '<input class="school form-control" value=' + school + '>' +
-                        '<label>Education Level</label>' + '<input class="level form-control" value=' + level + '>' +
-                        '<label>Department</label>' + '<input class="department form-control" value=' + department + '>' +
-                        '<label>Program</label>' + '<input class="program form-control" value=' + program + '>' +
+                        '<label>School</label>' + '<input class="school form-control" value="' + school + '">' +
+                        '<label>Education Level</label>' + '<input class="level form-control" value="' + level + '">' +
+                        '<label>Department</label>' + '<input class="department form-control" value="' + department + '">' +
+                        '<label>Program</label>' + '<input class="program form-control" value="' + program + '">' +
                         '<div class="text-right">' +
                             '<a class="close-education-display" href="#">' +
                             '<span class="glyphicon glyphicon-ok" onClick="EditEducation(' + x + ',' + educationId + ')"></span> Save' +
