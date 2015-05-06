@@ -42,7 +42,7 @@ function DisplayAddEducation(x) {
                         '<label>Program</label>' + '<input class="add-program form-control">' +
                         '<div class="text-right">' +
                             '<a class="close-education-display" href="#" onClick="Create(' + x + ')">' +
-                            '<span class="glyphicon glyphicon-ok"></span> Add' + 
+                                '<span class="glyphicon glyphicon-ok"></span> Add' + 
                             '</a>' +
                         '<div>' +
                     '</div>'
@@ -80,7 +80,9 @@ function DisplayEducation(x) {
                     '<div class="display-department col-lg-4">' + value.Department + '</div>' +
                     '<div class="display-program col-lg-8">' + value.Program + '</div>' +
                     '<div class="education-edit-link text-right">' +
-                        '<a href="#" onClick="DisplayEditEducation(' + counter + ',' + x + ',' + value.EducationId + ')"><span class="glyphicon glyphicon-pencil"></span> Edit</a>' +
+                        '<a href="#" onClick="DisplayEditEducation(' + counter + ',' + x + ',' + value.EducationId + ')">' +
+                            '<span class="glyphicon glyphicon-pencil"></span> Edit' +
+                        '</a>' +
                     '</div>' +
                     '</div>'
                 );
@@ -143,8 +145,8 @@ function DisplayEditEducation(counter, x, educationId) {
                         '<label>Department</label>' + '<input class="department form-control" value="' + department + '">' +
                         '<label>Program</label>' + '<input class="program form-control" value="' + program + '">' +
                         '<div class="text-right">' +
-                            '<a class="close-education-display" href="#">' +
-                            '<span class="glyphicon glyphicon-ok" onClick="EditEducation(' + x + ',' + educationId + ')"></span> Save' +
+                            '<a class="close-education-display" href="#"  onClick="EditEducation(' + x + ',' + educationId + ')">' +
+                            '<span class="glyphicon glyphicon-ok"></span> Save' +
                             '</a>' +
                         '<div>' +
                     '</div>'
@@ -174,7 +176,7 @@ function EditEducation(x, educationId) {
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             $(".education-edit.form-group").remove();
-            DisplayEducation(1);
+            DisplayEducation(x);
         }
     });
 }
