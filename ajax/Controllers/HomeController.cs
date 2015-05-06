@@ -47,7 +47,7 @@ namespace ajax.Controllers
                     {
                         IsPersistent = false
                     }, identity);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Profile");
                 }
             }
             return View();
@@ -80,7 +80,7 @@ namespace ajax.Controllers
                                              userIdentity);
                 ProfileRepository profileRepo = new ProfileRepository();
                 profileRepo.AddUser("", "", newUser.UserName);
-    
+                
             }
             return View();
         }
