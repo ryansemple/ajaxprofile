@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Profile";
+    ViewBag.PageId = "Profile";
+}
+
+<input type="hidden" id="userId" value=@ViewBag.userId>
+<div class="row">
+    <div class="col-lg-6 col-md-6" id="edit_profile_wrap">
+
+        <h2>Edit Profile</h2>
+
+        <h3>Biography</h3>
+        <input type="text" name="biography_input" id="biography_input" />
+
+    </div>
+
+    <div class="col-lg-6 col-md-6" id="live_profile_wrap">
+
+        <h2>View Profile</h2>
+
+
+
+        <h3>Education</h3>
+
+        <p id="biography_content"></p>
+        @*<button onclick="Create(1)">Try POST API</button>*@
+        <a class="education-add-link" href="#" onclick="DisplayAddEducation(@ViewBag.userId)"><span class="glyphicon glyphicon-plus"></span> Add</a>
+        
+    </div>
+</div>
+
+
+
+
+

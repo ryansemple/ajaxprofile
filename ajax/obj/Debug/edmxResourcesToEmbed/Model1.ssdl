@@ -82,6 +82,15 @@
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="EducationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
+  <EntityType Name="FriendRelated">
+    <Key>
+      <PropertyRef Name="UserIdPrimary" />
+      <PropertyRef Name="UserIdSecondary" />
+    </Key>
+    <Property Name="UserIdPrimary" Type="int" Nullable="false" />
+    <Property Name="UserIdSecondary" Type="int" Nullable="false" />
+    <Property Name="FriendConfirm" Type="bit" />
+  </EntityType>
   <EntityType Name="Photo">
     <Key>
       <PropertyRef Name="PhotoId" />
@@ -145,6 +154,18 @@
       </Principal>
       <Dependent Role="Education">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FriendRel__UserI__4A18FC72">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="FriendRelated" Type="Self.FriendRelated" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="FriendRelated">
+        <PropertyRef Name="UserIdPrimary" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -263,6 +284,7 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Education" EntityType="Self.Education" Schema="ryanajaxuser" store:Type="Tables" />
+    <EntitySet Name="FriendRelated" EntityType="Self.FriendRelated" Schema="ryanajaxuser" store:Type="Tables" />
     <EntitySet Name="Photo" EntityType="Self.Photo" Schema="ryanajaxuser" store:Type="Tables" />
     <EntitySet Name="Position" EntityType="Self.Position" Schema="ryanajaxuser" store:Type="Tables" />
     <EntitySet Name="Post" EntityType="Self.Post" Schema="ryanajaxuser" store:Type="Tables" />
@@ -271,6 +293,10 @@
     <AssociationSet Name="FK__Education__UserI__4277DAAA" Association="Self.FK__Education__UserI__4277DAAA">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Education" EntitySet="Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FriendRel__UserI__4A18FC72" Association="Self.FK__FriendRel__UserI__4A18FC72">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="FriendRelated" EntitySet="FriendRelated" />
     </AssociationSet>
     <AssociationSet Name="FK__Photo__UserId__38EE7070" Association="Self.FK__Photo__UserId__38EE7070">
       <End Role="UserProfile" EntitySet="UserProfile" />

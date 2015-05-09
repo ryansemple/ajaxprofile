@@ -143,5 +143,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FriendRelateds">
+      <EntityTypeMapping TypeName="ryanajaxModel.FriendRelated">
+        <MappingFragment StoreEntitySet="FriendRelated">
+          <ScalarProperty Name="FriendConfirm" ColumnName="FriendConfirm" />
+          <ScalarProperty Name="UserIdSecondary" ColumnName="UserIdSecondary" />
+          <ScalarProperty Name="UserIdPrimary" ColumnName="UserIdPrimary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -93,7 +93,7 @@ namespace ajax.Controllers
         }
         [Authorize]
         [HttpGet]
-        public ActionResult Profile()
+        public ActionResult PersonalProfile()
         {
             ryanajaxEntities context = new ryanajaxEntities();
             string email = context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).Select(e => e.Email).FirstOrDefault();
@@ -101,5 +101,16 @@ namespace ajax.Controllers
             ViewBag.userId = userId;
             return View();
         }
+        [Authorize]
+        [HttpGet]
+        public ActionResult Connections()
+        {
+            ryanajaxEntities context = new ryanajaxEntities();
+            string email = context.AspNetUsers.Where(u => u.UserName == User.Identity.Name).Select(e => e.Email).FirstOrDefault();
+            int userId = context.UserProfiles.Where(c => c.Email == email).Select(c => c.UserId).FirstOrDefault();
+            ViewBag.userId = userId;
+            return View();
+        }
+   
     }
 }

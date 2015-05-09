@@ -21,6 +21,7 @@ namespace ajax
             this.Posts = new HashSet<Post>();
             this.Work_History = new HashSet<Work_History>();
             this.Educations = new HashSet<Education>();
+            this.FriendRelateds = new HashSet<FriendRelated>();
         }
     
         public int UserId { get; set; }
@@ -41,5 +42,7 @@ namespace ajax
         public virtual ICollection<Work_History> Work_History { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Education> Educations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FriendRelated> FriendRelateds { get; set; }
     }
 }

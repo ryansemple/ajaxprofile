@@ -1,3 +1,7 @@
+IF OBJECT_ID('FriendRelated') IS NOT NULL
+DROP TABLE FriendRelated;
+GO
+
 IF OBJECT_ID('Position') IS NOT NULL
 DROP TABLE Position;
 
@@ -37,6 +41,14 @@ CREATE TABLE UserProfile(
 	ProfilePhoto VARCHAR(255),
 	AlbumName VARCHAR(30),
 	AlbumAllPublished BIT DEFAULT 0
+);
+
+CREATE TABLE FriendRelated(
+	UserIdPrimary INT,
+	UserIdSecondary INT,
+	FriendConfirm bit(1),
+	FOREIGN KEY (UserIdPrimary) REFERENCES UserProfile(UserId),
+	PRIMARY KEY (userIdPrimary, UserIdSecondary)
 );
 
 CREATE TABLE Post(

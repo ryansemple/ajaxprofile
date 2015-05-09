@@ -7,13 +7,7 @@ using System.Web.Http;
 
 namespace ajax.Controllers.API
 {
-    public class ProfileController : ApiController
+    public class PhotosController : ApiController
     {
-        public string GetProfile()
-        {
-            return "Profile retrieved";
-        }
-        
-        
     }
 }

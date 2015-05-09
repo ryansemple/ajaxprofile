@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ajax.ViewModels;
+using ajax.Models;
 
 namespace ajax.Models
 {
@@ -37,6 +39,24 @@ namespace ajax.Models
             context.UserProfiles.Add(userProfile);
 
             context.SaveChanges();
+        }
+
+        public List<UserModel> GetUserList()
+        {
+            ryanajaxEntities context = new ryanajaxEntities();
+            var query = from usr in context.UserProfiles
+                        select new
+                        {
+                            UserId = usr.UserId,
+                            FirstName = usr.FirstName,
+                            LastName = usr.LastName
+                        };
+            List<UserModel> userList = new List<UserModel>();
+            foreach (var person in query)
+            {
+                userList.Add(new UserModel(person.UserId, person.FirstName, person.LastName));
+            }
+            return userList;
         }
     }
 }

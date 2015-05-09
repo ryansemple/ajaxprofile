@@ -37,5 +37,6 @@ namespace ajax
         public virtual DbSet<Work_History> Work_History { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
         public virtual DbSet<Education> Educations { get; set; }
+        public virtual DbSet<FriendRelated> FriendRelateds { get; set; }
     }
 }

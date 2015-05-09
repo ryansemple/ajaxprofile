@@ -205,6 +205,11 @@
       <End Role="UserProfile" EntitySet="UserProfiles" />
       <End Role="Education" EntitySet="Educations" />
     </AssociationSet>
+    <EntitySet Name="FriendRelateds" EntityType="ryanajaxModel.FriendRelated" />
+    <AssociationSet Name="FK__FriendRel__UserI__4A18FC72" Association="ryanajaxModel.FK__FriendRel__UserI__4A18FC72">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="FriendRelated" EntitySet="FriendRelateds" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="UserProfile">
     <Key>
@@ -223,6 +228,7 @@
     <NavigationProperty Name="Posts" Relationship="ryanajaxModel.FK__Post__UserId__3429BB53" FromRole="UserProfile" ToRole="Post" />
     <NavigationProperty Name="Work_History" Relationship="ryanajaxModel.FK__Work_Hist__Curre__3CBF0154" FromRole="UserProfile" ToRole="Work_History" />
     <NavigationProperty Name="Educations" Relationship="ryanajaxModel.FK__Education__UserI__4277DAAA" FromRole="UserProfile" ToRole="Education" />
+    <NavigationProperty Name="FriendRelateds" Relationship="ryanajaxModel.FK__FriendRel__UserI__4A18FC72" FromRole="UserProfile" ToRole="FriendRelated" />
   </EntityType>
   <Association Name="FK__Photo__UserId__38EE7070">
     <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
@@ -281,6 +287,28 @@
       </Principal>
       <Dependent Role="Education">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FriendRelated">
+    <Key>
+      <PropertyRef Name="UserIdPrimary" />
+      <PropertyRef Name="UserIdSecondary" />
+    </Key>
+    <Property Name="UserIdPrimary" Type="Int32" Nullable="false" />
+    <Property Name="UserIdSecondary" Type="Int32" Nullable="false" />
+    <Property Name="FriendConfirm" Type="Boolean" />
+    <NavigationProperty Name="UserProfile" Relationship="ryanajaxModel.FK__FriendRel__UserI__4A18FC72" FromRole="FriendRelated" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="FK__FriendRel__UserI__4A18FC72">
+    <End Type="ryanajaxModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+    <End Type="ryanajaxModel.FriendRelated" Role="FriendRelated" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="FriendRelated">
+        <PropertyRef Name="UserIdPrimary" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

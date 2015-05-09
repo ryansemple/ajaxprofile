@@ -19,12 +19,14 @@
         <AssociationConnector Association="ryanajaxModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="ryanajaxModel.FK__Position__6F7F8B4B" ManuallyRouted="false" />
         <AssociationConnector Association="ryanajaxModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ryanajaxModel.UserProfile" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="ryanajaxModel.UserProfile" Width="1.5" PointX="0.75" PointY="4.75" />
         <AssociationConnector Association="ryanajaxModel.FK__Photo__UserId__38EE7070" />
         <AssociationConnector Association="ryanajaxModel.FK__Post__UserId__3429BB53" />
         <AssociationConnector Association="ryanajaxModel.FK__Work_Hist__Curre__3CBF0154" />
         <EntityTypeShape EntityType="ryanajaxModel.Education" Width="1.5" PointX="3" PointY="0.75" />
         <AssociationConnector Association="ryanajaxModel.FK__Education__UserI__4277DAAA" />
+        <EntityTypeShape EntityType="ryanajaxModel.FriendRelated" Width="1.5" PointX="3" PointY="13.75" />
+        <AssociationConnector Association="ryanajaxModel.FK__FriendRel__UserI__4A18FC72" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
